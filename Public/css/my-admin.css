@@ -1,0 +1,169 @@
+#myCarousel .item {
+	/* 	height: 420px; */
+	
+}
+
+#adrow>div {
+	padding: 0;
+}
+
+.nopaddng {
+	padding: 0;
+}
+
+.nomargin {
+	margin: 0;
+}
+
+.divbox {
+	margin-bottom: 10px;
+	border: 1px solid #D4D4D4;
+}
+
+.index-hd {
+	margin-bottom: 5px;
+	padding: 0 10px;
+	height: 40px;
+	line-height: 40px;
+	color: #FFF; /*#FBFBFB;*/
+	border-bottom: 1px solid #D4D4D4;
+	background-color: #C0C0C0;
+}
+
+.title em {
+	font-size: 18px;
+	font-style: normal;
+	font-weight: bold;
+	color: #000; /*#535353;*/
+	vertical-align: middle;
+	font-family: "Century Gothic", "Microsoft yahei";
+}
+
+.dash-li {
+	list-style: none;
+	padding: 0;
+/* 	margin: 5px; */
+	display: list-item;
+	text-align: -webkit-match-parent;
+	margin-bottom: 6px;
+	padding-bottom: 6px;
+	line-height: 1.8;
+	border-bottom: 1px dashed #D4D4D4;
+	font-size: 16px;
+}
+
+/* p, h1, h2, h3, h4, h5, h6, dl, dt, dd, ul, ol, li, form, input, textarea, */
+/* 	button, pre, img { */
+/* 	margin: 0px; */
+/* 	padding: 0; */
+/* } */
+
+#navsearch {
+	width: 100px;
+	margin-left: 10px;
+}
+
+html, body {
+	height: 100%;
+	font-family: "Century Gothic", "Microsoft yahei";
+}
+
+/* 登录 */
+.box {
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6699FF',
+		endColorstr='#6699FF'); /*  IE */
+	background-image: linear-gradient(bottom, #6699FF 0%, #6699FF 100%);
+	background-image: -o-linear-gradient(bottom, #6699FF 0%, #6699FF 100%);
+	background-image: -moz-linear-gradient(bottom, #6699FF 0%, #6699FF 100%);
+	background-image: -webkit-linear-gradient(bottom, #6699FF 0%, #6699FF 100%);
+	background-image: -ms-linear-gradient(bottom, #6699FF 0%, #6699FF 100%);
+	margin: 0 auto;
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.login-box {
+	width: 100%;
+	max-width: 500px;
+	height: 400px;
+	position: absolute;
+	top: 50%;
+	margin-top: -260px;
+	/*设置负值，为要定位子盒子的一半高度*/
+}
+
+@media screen and (min-width:500px) {
+	.login-box {
+		left: 50%;
+		/*设置负值，为要定位子盒子的一半宽度*/
+		margin-left: -250px;
+	}
+}
+
+.form {
+	width: 100%;
+	max-width: 500px;
+	height: 275px;
+	margin: 25px auto 0px auto;
+	/*padding-top: 25px;*/
+}
+
+.login-content {
+	height: 360px;
+	width: 100%;
+	max-width: 500px;
+	background-color: rgba(255, 250, 2550, 6);
+	float: left;
+}
+
+.input-group2 {
+	margin: 0px 0px 30px 0px !important;
+}
+
+.form-control, .input-group {
+	height: 40px;
+}
+
+/* .form-group { */
+/* 	margin-bottom: 0px !important; */
+/* } */
+
+.login-title {
+	padding: 20px 10px;
+	background-color: rgba(0, 0, 0, .6);
+}
+
+.login-title h1 {
+	margin-top: 10px !important;
+	/*margin-bottom: -10px !important;*/
+}
+
+.login-title small {
+	color: #fff;
+}
+
+.link p {
+	line-height: 20px;
+	margin-top: 30px;
+}
+
+.btn-sm {
+	padding: 8px 24px !important;
+	font-size: 16px !important;
+}
+
+/* 底部  */
+.myfooter {
+	/*  	min-width: 1000px; */
+	border-top: 8px solid #000;
+	background-color: #34393C;
+	align: center;
+	/* 	font-weight: bold; */
+	color: #7E8283;
+	line-height: 1.8;
+	padding: 15px 0;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}

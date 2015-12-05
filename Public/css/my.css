@@ -1,0 +1,353 @@
+#myCarousel .item {
+	/* 	height: 420px; */
+	
+}
+
+#adrow>div {
+	padding: 0;
+}
+
+.nopaddng {
+	padding: 0;
+}
+
+.divbox {
+	margin-bottom: 10px;
+	border: 1px solid #D4D4D4;
+}
+
+.nopaddingleft {
+	padding-left: 0 !important;
+	margin: 0 !important;
+}
+
+.nopaddingright {
+	padding-right: 0 !important;
+	margin: 0 !important;
+}
+
+.index-hd {
+	margin-bottom: 5px;
+	padding: 0 10px;
+	height: 32px;
+	line-height: 32px;
+	color: #FFF; /*#FBFBFB;*/
+	border-bottom: 1px solid #D4D4D4;
+	background-color: #EDCB83;
+}
+
+.title em {
+	font-size: 14px;
+	font-style: normal;
+	font-weight: bold;
+	color: #535353;; //# FFF; // #000; /*#535353;*/
+	vertical-align: middle;
+	font-family: "Century Gothic", "Microsoft yahei";
+}
+
+.dash-li {
+	list-style: none;
+	padding: 0;
+/* 	margin: 5px; */
+	display: list-item;
+	text-align: -webkit-match-parent;
+	margin-bottom: 6px;
+	padding-bottom: 6px;
+	border-bottom: 1px dashed #D4D4D4;
+	font-size: 14px;
+}
+
+body {
+	padding-top: 50px;
+}
+
+p, h1, h2, h3, h4, h5, h6, dl, dt, dd, ul, ol, li, form, input, textarea,
+	button, pre, img {
+	margin: 0px;
+	padding: 0;
+}
+
+#navsearch {
+	width: 100px;
+	margin-left: 10px;
+}
+
+html, body {
+	height: 100%;
+	font-family: "Century Gothic", "Microsoft yahei";
+}
+
+/* 登录 */
+.box {
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6699FF',
+		endColorstr='#6699FF'); /*  IE */
+	background-image: linear-gradient(bottom, #6699FF 0%, #6699FF 100%);
+	background-image: -o-linear-gradient(bottom, #6699FF 0%, #6699FF 100%);
+	background-image: -moz-linear-gradient(bottom, #6699FF 0%, #6699FF 100%);
+	background-image: -webkit-linear-gradient(bottom, #6699FF 0%, #6699FF 100%);
+	background-image: -ms-linear-gradient(bottom, #6699FF 0%, #6699FF 100%);
+	margin: 0 auto;
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.login-box {
+	width: 100%;
+	max-width: 500px;
+	height: 400px;
+	position: absolute;
+	top: 50%;
+	margin-top: -260px;
+	/*设置负值，为要定位子盒子的一半高度*/
+}
+
+@media screen and (min-width:500px) {
+	.login-box {
+		left: 50%;
+		/*设置负值，为要定位子盒子的一半宽度*/
+		margin-left: -250px;
+	}
+}
+
+.form {
+	width: 100%;
+	max-width: 500px;
+	height: 275px;
+	margin: 25px auto 0px auto;
+	/*padding-top: 25px;*/
+}
+
+.login-content {
+	height: 360px;
+	width: 100%;
+	max-width: 500px;
+	background-color: rgba(255, 250, 2550, 6);
+	float: left;
+}
+
+.input-group {
+	margin: 0px 0px 30px 0px !important;
+}
+
+.form-control, .input-group {
+	height: 40px;
+}
+
+/* .form-group { */
+/* 	margin-bottom: 0px !important; */
+/* } */
+.login-title {
+	padding: 20px 10px;
+	background-color: rgba(0, 0, 0, .6);
+}
+
+.login-title h1 {
+	margin-top: 10px !important;
+	/*margin-bottom: -10px !important;*/
+}
+
+.login-title small {
+	color: #fff;
+}
+
+.link p {
+	line-height: 20px;
+	margin-top: 30px;
+}
+
+.btn-sm {
+	padding: 8px 24px !important;
+	font-size: 16px !important;
+}
+
+/* 底部  */
+.myfooter {
+	/*  	min-width: 1000px; */
+	border-top: 8px solid #000;
+	background-color: #34393C;
+	align: center;
+	/* 	font-weight: bold; */
+	color: #7E8283;
+	line-height: 1.8;
+	padding: 15px 0;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+/* modal dialog 
+.modal-dialog {
+  position:absolute;
+  top:50% !important;
+  transform: translate(0, -50%) !important;
+  -ms-transform: translate(0, -50%) !important;
+  -webkit-transform: translate(0, -50%) !important;
+  margin:auto 5%;
+  width:90%;
+  height:80%;
+}
+.modal-content {
+  min-height:100%;
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0; 
+}
+.modal-body {
+  position:absolute;
+  top:45px; // height of header
+  bottom:45px;  // height of footer
+  //left:0;
+  //right:0;
+  overflow-y:auto;
+  max-height: 420px;
+}
+.modal-footer {
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+}*/
+.grouppic .row {
+	margin-left: -5px;
+	margin-right: -5px;
+	margin-top: -10px;
+	margin-bottom: -10px;
+}
+
+.story {
+/* 	width: 295px; */
+	float: left;
+	padding-left: 19px;
+}
+
+.story .thumbnail {
+	position: relative;
+	overflow: hidden;
+}
+
+.story .thumbnail>a {
+/* 	min-width: 173px; */
+/* 	height: 179px; */
+/* 	min-height:50px; */
+	display: block;
+	overflow: hidden;
+}
+
+.story .thumbnail:hover {
+	border-color: #2B85AE;
+}
+
+.story small {
+	position: absolute;
+	top: 147px;
+	color: rgb(255, 255, 255);
+	background: rgba(0, 0, 0, 0.5);
+	width: 273px;
+	left: 0;
+	padding: 0px 9px;
+	height: 32px;
+	line-height: 32px;
+}
+
+.story small a {
+	color: rgb(255, 255, 255);
+}
+
+.story .thumbnail .caption {
+	/*     height: 147px; */
+	overflow: hidden;
+	margin-bottom: 0px;
+}
+
+.story .thumbnail>img, .story .thumbnail a>img, .promo .thumbnail>img,
+	.promo .thumbnail a>img {
+	width: 100%;
+/* 	height: 179px; */
+	-webkit-transition: -webkit-transform .3s linear;
+	-moz-transition: -moz-transform .3s linear;
+	-o-transition: -o-transform .3s linear;
+	transition: transform .3s linear;
+}
+
+.story .thumbnail a:hover>img, .promo .thumbnail a:hover>img {
+	-webkit-transform: scale(1.1);
+	-moz-transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	-o-transform: scale(1.1);
+	transform: scale(1.1);
+}
+
+.story h4 {
+	font-weight: bold;
+	line-height: 1.2;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	text-align: center;
+	font-size: 10pt;
+}
+
+.story h4 .subtitle {
+	font-size: 9pt;
+}
+
+.story .panel-footer {
+	background-color: #FFF;
+	padding: 10px;
+	height: 41px;
+}
+
+.story.adv .thumbnail>a {
+	height: 382px;
+}
+
+.story.adv .thumbnail>img, .story.adv .thumbnail a>img {
+	height: 382px;
+}
+
+.story .thumbnail .icon{
+    position: absolute;
+    width: 0;
+    height: 0;
+    display: block;
+    text-indent: -4em;
+    top: 0;
+    border-left: 60px rgb(255, 0, 0) solid;
+    border-bottom: 60px rgba(0, 0, 0, 0) solid;
+    left: 0;
+    z-index: 10;
+}
+
+.story .thumbnail .icon span{
+
+    color: rgb(255, 255, 255);
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    display: block;
+    margin-left: -18px;
+    margin-top: -22px;
+}
+
+.story .thumbnail .icon span.two{
+    margin-left: -15px;
+    margin-top: -27px;
+}
+
+/* .message-cell { */
+/*   border: 0; */
+/*   border-bottom-width: 1px; */
+/*   border-bottom-style: solid; */
+/*   border-bottom-color: rgb(221, 221, 221); */
+/* } */
+
+.graytext {
+	color: gray;
+	font-size: 12px;
+}
+
+.message-content {
+	font-size: 16px;
+}
