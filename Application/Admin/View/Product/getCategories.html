@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<include file="./Application/Tpl/header-admin.html" />
+<meta name="description" content="东鸣轩" />
+<meta name="author" content="Vista JIN" />
+<meta name="keywords" CONTENT="东鸣轩" />
+<link rel="stylesheet" href="__PUBLIC__/treeview/bootstrap-treeview.css">
+<script src="__PUBLIC__/treeview/bootstrap-treeview.js"></script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12" align="center" style="margin: 20px">
+				<button class="btn btn-success" type="submit" title="暂时支持最多2层类别" id="addBtn">
+					<span class="glyphicon glyphicon-plus"></span>添加类别
+				</button>
+				<button class="btn btn-default" type="submit" id="editBtn" disabled>
+					<span class="glyphicon glyphicon-pencil"></span>修改所选
+				</button>
+				<button class="btn btn-default" type="submit" id="delBtn" disabled>
+					<span class="glyphicon glyphicon-minus"></span>删除所选
+				</button>
+			</div>
+		</div>
+		<if condition="$tree eq '[]'">
+			<h3>目前没有产品类别，请点击添加按钮添加。</h3>
+		</if>
+		<div class="row">
+			<div id="tree"></div>
+		</div>
+	</div>
+	
+	<form id="theform" method="post"> <!-- action="__CONTROLLER__/addCategoryInput"  -->
+		<input type="hidden" name="uid" id="uid" value="0" >
+	</form>
+</body>
+<script>
+	function submitForm(url) {
+	    $("#theform").attr("action", url);
+	    $("#theform").submit();
+	}
+	
+	$("#addBtn").click(function() {
+	    submitForm("__CONTROLLER__/addCategoryInput");
+	});
+	
+	$("#editBtn").click(function() {
+	    submitForm("__CONTROLLER__/updateCategoryInput");
+	});
+	
+	$("#delBtn").click(function() {
+	    submitForm("__CONTROLLER__/delCategory");
+	});
+	
+	$('#tree').treeview({
+		data : {$tree}
+	});
+	
+	$('#tree').on('nodeSelected', function(event, data) {
+		$("#uid").val(data.uid);	
+		
+		// 暂时支持最多2层类别
+		if (data.parent_uid == 0) {
+			$("#addBtn").removeAttr("disabled");
+			$("#addBtn").removeClass("btn-default");
+			$("#addBtn").addClass("btn-success");
+		} else {
+			$("#addBtn").attr("disabled", true);
+			$("#addBtn").addClass("btn-default");
+			$("#addBtn").removeClass("btn-success");
+		}
+		
+		$("#editBtn").removeAttr("disabled");
+		$("#editBtn").removeClass("btn-default");
+		$("#editBtn").addClass("btn-success");
+		
+		if (data.nodes == undefined) {
+			$("#delBtn").removeAttr("disabled");
+			$("#delBtn").removeClass("btn-default");
+			$("#delBtn").addClass("btn-danger");
+		} else {
+			$("#delBtn").attr("disabled", true);
+			$("#delBtn").addClass("btn-default");
+			$("#delBtn").removeClass("btn-danger");
+		}
+	});
+	
+	$('#tree').on('nodeUnselected', function(event, data) {
+		$("#uid").val(0);
+		
+		$("#addBtn").removeAttr("disabled");
+		$("#addBtn").removeClass("btn-default");
+		$("#addBtn").addClass("btn-success");
+		
+		$("#editBtn").attr("disabled", true);
+		$("#editBtn").addClass("btn-default");
+		$("#editBtn").removeClass("btn-success");
+		
+		$("#delBtn").attr("disabled", true);
+		$("#delBtn").addClass("btn-default");
+		$("#delBtn").removeClass("btn-danger");
+	});
+</script>
+</html>

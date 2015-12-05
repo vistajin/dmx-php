@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<include file="./Application/Tpl/header-admin.html" />
+<link href="__PUBLIC__/fileinput-master/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+<script src="__PUBLIC__/fileinput-master/js/fileinput.js"></script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h3>侧边栏广告</h3>
+		</div>
+		<div class="row" id="adrow">
+			<div class="col-md-6">t</div>
+			<div class="col-md-6">t</div>
+		</div>
+		<form enctype="multipart/form-data" action="__ROOT__/Admin/Upload/upload" method="post">
+			<!--             <div class="form-group">
+                <label for="description">左边栏广告</label>
+                <input type="text" class="form-control" name="description" id="description" placeholder="输入幻灯片描述">
+            </div><br/> -->
+			<div class="form-group">
+				<label for="photo">左边栏广告，选择图片 (jpg, png, gif, jpeg)</label> <input name="photo" id="photo" class="file form-control"
+					type="file" multiple data-min-file-count="1">
+			</div>
+			<!-- <div class="form-group">
+                <label for="description">右边栏广告</label>
+                <input type="text" class="form-control" name="description" id="description" placeholder="输入幻灯片描述">
+            </div><br/> -->
+			<div class="form-group">
+				<label for="photo">右边栏广告，选择图片 (jpg, png, gif, jpeg)</label> <input name="photo" id="photo" class="file form-control"
+					type="file" multiple data-min-file-count="1">
+			</div>
+		</form>
+		<div align="center">
+			<button type="submit" class="btn btn-default" id="backbtn">取消</button>
+		</div>
+	</div>
+
+	<form id="form" action="__CONTROLLER__/getSlideList" method="post"></form>
+</body>
+<script>
+$("#photo").fileinput({
+    'allowedFileExtensions' : ['jpg', 'png','gif', 'jpeg'],
+});
+
+$("#backbtn").click(function() {
+    $("#form").submit();
+});
+</script>
+</html>

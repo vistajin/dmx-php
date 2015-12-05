@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<include file="./Application/Tpl/header-admin.html" />
+<meta name="description" content="东鸣轩" />
+<meta name="author" content="Vista JIN" />
+<meta name="keywords" CONTENT="东鸣轩" />
+<title>东鸣轩商城</title>
+</head>
+
+<body>
+	<div class="container">
+		<div class="page-header nomargin" align="center">
+			<h3>商家详情</h3>
+		</div>
+		<form class="form-horizontal">
+			<div>
+				<label class="col-sm-3 control-label">商家名称</label>
+				<div class="col-sm-9">
+					<p class="form-control-static">{$record.name}</p>
+				</div>
+			</div>
+			<div>
+				<label class="col-sm-3 control-label">商家序号</label>
+				<div class="col-sm-9">
+					<p class="form-control-static">{$record.oseq}</p>
+				</div>
+			</div>
+			<div>
+				<label class="col-sm-3 control-label">楼层</label>
+				<div class="col-sm-9">
+					<p class="form-control-static">{$record.floor}</p>
+				</div>
+			</div>
+			<div>
+				<label class="col-sm-3 control-label">经营业务</label>
+				<div class="col-sm-9">
+					<p class="form-control-static">{$record.major_business_text}</p>
+				</div>
+			</div>
+			<div>
+				<label class="col-sm-3 control-label">经营特色</label>
+				<div class="col-sm-9">
+					<p class="form-control-static">{$record.deal_in}</p>
+				</div>
+			</div>
+<!-- 			<div> -->
+<!-- 				<label class="col-sm-3 control-label">次营业务</label> -->
+<!-- 				<div class="col-sm-9"> -->
+<!-- 					<p class="form-control-static">{$businessTypeList[$record[second_business]]}</php></p> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 			<div> -->
+<!-- 				<label class="col-sm-3 control-label">商家LOGO</label> -->
+<!-- 				<div class="col-sm-9"> -->
+<!-- 					<p class="form-control-static"><img src="__ROOT__/Uploads/{$record.logo}"></p> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+			<div>
+				<label class="col-sm-3 control-label">商家地址</label>
+				<div class="col-sm-9">
+					<p class="form-control-static">{$record.address}</p>
+				</div>
+			</div>
+			<div>
+				<label class="col-sm-3 control-label">联系人</label>
+				<div class="col-sm-9">
+					<p class="form-control-static">{$record.contact_person}</p>
+				</div>
+			</div>
+			<div>
+				<label class="col-sm-3 control-label">联系电话</label>
+				<div class="col-sm-9">
+					<p class="form-control-static">{$record.contact_phone}</p>
+				</div>
+			</div>
+			<div>
+				<label class="col-sm-3 control-label">电子邮箱</label>
+				<div class="col-sm-9">
+					<p class="form-control-static">{$record.email}</p>
+				</div>
+			</div>
+			<div>
+				<label class="col-sm-3 control-label">邮政编码</label>
+				<div class="col-sm-9">
+					<p class="form-control-static">{$record.postcode}</p>
+				</div>
+			</div>
+			<div>
+				<label class="col-sm-3 control-label">商家简介</label>
+				<div class="col-sm-9">
+					{$record.introduction}
+				</div>
+			</div>
+			<div align="center">
+				<button type="button" class="btn btn-default" onclick="history.go(-1)">返回</button>
+			</div>
+		</form>
+		<br/><br/>
+	</div>
+
+</body>
+</html>

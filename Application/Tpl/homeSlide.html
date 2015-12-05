@@ -1,0 +1,39 @@
+			<div class="row" id="adrow">
+<!-- 				<div class="col-md-2">自动播放自动播放自动播放自动播放自动播放</div> -->
+				<div class="col-md-12">
+<!-- 					<img src="__PUBLIC__/images/band.jpg" style="width:150px"> -->
+					<!-- 自动播放：data-ride="carousel" data-interval="5000" -->
+					<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="8000">
+						<!-- 轮播（Carousel）指标 -->
+						<ol class="carousel-indicators">
+							<volist name="slidelist" id="vo">
+								<if condition="$key eq 0">
+									<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+								<else />
+									<li data-target="#myCarousel" data-slide-to="{$key}"></li>
+								</if>
+							</volist>
+						</ol>
+						<!-- 轮播（Carousel）项目 -->
+						<div class="carousel-inner" role="listbox"> <!-- TODO -->
+							<volist name="slidelist" id="vo">
+								<if condition="$key eq 0">
+									<div class="item active">
+								<else />
+									<div class="item">
+								</if>
+								<img src="__ROOT__/Uploads/{$vo.path}">
+<!-- 								<div class="carousel-caption">{$vo.description}</div> -->
+								</div>
+							</volist>
+						</div>
+					<!-- 轮播（Carousel）导航 
+					<a class="carousel-control left" href="#myCarousel" data-slide="prev" role="button"> <span
+						class="glyphicon glyphicon-chevron-left"></span>
+					</a> <a class="carousel-control right" href="#myCarousel" data-slide="next" role="button"> <span
+						class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+					</a>-->
+					</div>
+				</div>
+<!-- 				<div class="col-md-2">自动播放自动播放自动播放自动播放自动播放</div> -->
+			</div>

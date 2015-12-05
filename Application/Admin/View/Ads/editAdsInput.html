@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<include file="./Application/Tpl/header-admin.html" />
+<link href="__PUBLIC__/bootstrap-toggle/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="__PUBLIC__/bootstrap-toggle/js/bootstrap-toggle.min.js"></script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h3>编辑 {$categoryText}</h3>
+		</div>
+		<form action="{:U('Admin/Ads/updateAds')}" method="post">
+			<input type="hidden" name="category" value="{$record.category}">
+			<input type="hidden" name="uid" value="{$record.uid}">
+			<div class="form-group">
+				<label for="isShow">是否显示？</label>
+				<if condition="$record.isshow eq 1">
+				<input type="checkbox" class="form-control" name="isShow" id="isShow"
+					data-toggle="toggle" value="1" checked>
+				<else/>
+				<input type="checkbox" class="form-control" name="isShow" id="isShow"
+					data-toggle="toggle" value="1" >
+				</if>
+			</div>
+			<div class="form-group">
+				<label for="seller_uid">选择广告商家</label> <select class="form-control" required style="width: 300px" name="seller_uid"
+					id="seller_uid">
+					<option value="" selected>请选择</option>
+					<volist name="sellerList" id="vo">
+					<if condition="$vo.uid eq $record['seller_uid']">
+					<option value="{$vo.uid}" selected>{$vo.name}</option>
+					<else/>
+					<option value="{$vo.uid}">{$vo.name}</option>
+					</if>
+					</volist>
+				</select>
+			</div>
+			<div align="center">
+				<button class="btn btn-success" type="submit" id="save" value="submit">提交</button>
+				<button type="button" class="btn btn-default" id="backbtn">取消</button>
+				<BR /> <BR />
+			</div>
+		</form>
+	</div>
+	<form id="form" action="__CONTROLLER__/adsList/category/{$record.category}" method="post"></form>
+</body>
+<script>
+$("#backbtn").click(function() {
+    $("#form").submit();
+});
+</script>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<include file="./Application/Tpl/header-admin.html" />
+<meta name="description" content="东鸣轩" />
+<meta name="author" content="Vista JIN" />
+<meta name="keywords" CONTENT="东鸣轩" />
+<title>东鸣轩商城</title>
+<link href="__PUBLIC__/fileinput-master/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+<script src="__PUBLIC__/fileinput-master/js/fileinput.js"></script>
+<script charset="utf-8" src="__PUBLIC__/kindeditor/kindeditor.js"></script>
+<script charset="utf-8" src="__PUBLIC__/kindeditor/lang/zh_CN.js"></script>
+<link href="__PUBLIC__/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+<script charset="utf-8" src="__PUBLIC__/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script charset="utf-8" src="__PUBLIC__/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<link href="__PUBLIC__/bootstrap-toggle/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="__PUBLIC__/bootstrap-toggle/js/bootstrap-toggle.min.js"></script>
+<script>
+	KindEditor.ready(function(K) {
+		window.editor = K.create('#editor_id');
+	});
+</script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="page-header nomargin">
+			<h3>添加物品</h3>
+		</div>
+		<form enctype="multipart/form-data" action="__ROOT__/Admin/AuctionGoods/addAuctionGoods" method="post">
+			<div class="form-group">
+				<label for="name">物品名称</label>
+				<input type="text" class="form-control" name="name" id="name" required
+					placeholder="请输入物品名称">
+			</div>
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="sold">已拍卖？</label> -->
+<!-- 				<input type="checkbox" class="form-control" name="sold" id="sold" data-toggle="toggle" value="1"> -->
+<!-- 			</div> -->
+			<div class="form-group">
+				<label for="status">物品状态</label>
+				<select class="form-control" required style="width:100px" name="status" id="status">
+<!-- 					<option value="0">请选择</option> -->
+					<volist name="goodsStatusList" id="vo">
+					<option value="{$key}">{$vo}</option>
+					</volist>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="category">物品类别</label>
+				<select class="form-control" required style="width:300px" name="category" id="category">
+<!-- 					<option value="">请选择</option> -->
+					<volist name="productCategoryList" id="vo">
+					<option value="{$key}">{$vo}</option>
+					</volist>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="price">物品价格</label>
+				<input type="text" class="form-control" name="price" id="price" required
+					placeholder="请输入物品价格" style="width: 150px;">
+			</div>
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="begin_price">起拍价</label> -->
+<!-- 				<input type="text" class="form-control" name="begin_price" id="begin_price" required -->
+<!-- 					placeholder="请输入起拍价" style="width: 150px;"> -->
+<!-- 			</div> -->
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="end_price">最终价</label> -->
+<!-- 				<input type="text" class="form-control" name="end_price" id="end_price"  -->
+<!-- 					placeholder="请输入最终价" style="width: 150px;"> -->
+<!-- 			</div> -->
+			<div class="form-group">
+				<label for="winner">获得者</label>
+				<input type="text" class="form-control" name="winner" id="winner" 
+					placeholder="请输入获得者" style="width: 300px;">
+			</div>
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="begin_time">起拍时间</label> -->
+<!-- 				<div class="input-group date form_datetime" data-date="" data-date-format="yyyy-mm-dd hh:ii" -->
+<!-- 					data-link-field="begin_time" data-link-format="yyyy-mm-dd hh:ii:00" style="width: 230px;"> -->
+<!-- 					<input class="form-control" size="16" type="text" value="" readonly placeholder="请选择起拍时间"> -->
+<!--                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span> -->
+<!-- 					<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span> -->
+<!-- 				</div> -->
+<!-- 				<input type="hidden" id="begin_time" name="begin_time" /> -->
+<!-- 			</div> -->
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="end_time">结束时间</label> -->
+<!-- 				<div class="input-group date form_datetime" data-date="" data-date-format="yyyy-mm-dd hh:ii" -->
+<!-- 					data-link-field="end_time" data-link-format="yyyy-mm-dd hh:ii:00" style="width: 230px;"> -->
+<!-- 					<input class="form-control" size="16" type="text" value="" readonly placeholder="请选择结束时间"> -->
+<!--                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span> -->
+<!-- 					<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span> -->
+<!-- 				</div> -->
+<!-- 				<input type="hidden" id="end_time" name="end_time" /> -->
+<!-- 			</div> -->
+			<div class="form-group">
+				<label for="photo">物品缩略图 (jpg, png, gif, jpeg)</label>
+				<input name="photo" id="photo" class="file form-control" type="file" multiple data-min-file-count="1">
+			</div>
+			<div class="form-group">
+				<label for="description">物品详情</label>
+				<textarea id="editor_id" name="description" style="width: 100%; height: 400px;"></textarea>
+			</div>
+			<div align="center">
+				<button type="submit" class="btn btn-info">确定</button>
+			</div>
+		</form>
+		<br/><br/>
+	</div>
+
+</body>
+<script>
+$("#photo").fileinput({
+    'allowedFileExtensions' : ['jpg', 'png','gif', 'jpeg'],
+});
+$('.form_datetime').datetimepicker({
+    language:  'zh-CN',
+    weekStart: 1,
+    todayBtn:  1,
+	autoclose: 1,
+	todayHighlight: 1,
+	startView: 2,
+	forceParse: 0,
+    showMeridian: 1
+});
+</script>
+</html>

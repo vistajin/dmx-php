@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<include file="./Application/Tpl/header.html" />
+<title>东鸣轩收藏品中心</title>
+</head>
+
+<body>
+	<include file="./Application/Tpl/navi.html" active="home"/>
+	<div class="container">
+		<include file="./Application/Tpl/homeSlide.html" />
+        <div class="row">
+            <div class="col-md-3 nopaddingleft">
+                <include file="./Application/Tpl/activity.html" />                
+                <include file="./Application/Tpl/ads.html" key="otherleftads" />
+            </div>
+            <div class="col-md-9 nopaddingleft nopaddingright">
+                <div class="panel panel-warning">
+					<div class="panel-heading">免费服务</div>
+					<div class="panel-body">{$richText}</div>			
+                </div>
+            </div>
+        </div>
+	</div>
+    <include file="./Application/Tpl/footer.html" />
+</body>
+</html>

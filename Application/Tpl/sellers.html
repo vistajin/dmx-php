@@ -1,0 +1,21 @@
+<div class="panel panel-warning">
+	<div class="panel-heading">入驻商家
+		<span class="pull-right">
+			<a href="__ROOT__/Home/Seller/sellerList.html">
+				更多>>
+			</a>
+		</span>
+	</div>
+	<div class="panel-body" id="amouncement">
+		<marquee id="homeAnnouncement" behavior="scroll" height="300px" onmouseout="this.start()" onmouseover="this.stop()"
+			direction="up" scrollamount="3">
+			<ul>
+				<volist name="sellerList" id="vo">
+					<li class="dash-li">
+						<a href="__ROOT__/Home/Seller/sellerDetails/uid/{$vo.uid}">{$vo.name}</a>
+					</li>
+				</volist>
+			</ul>
+		</marquee>
+	</div>
+</div>

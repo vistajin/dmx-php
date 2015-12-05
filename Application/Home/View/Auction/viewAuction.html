@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<include file="./Application/Tpl/header.html" />
+<link rel="stylesheet" href="__PUBLIC__/treeview/bootstrap-treeview.css">
+<script src="__PUBLIC__/treeview/bootstrap-treeview.js"></script>
+<title>东鸣轩收藏品中心</title>
+</head>
+
+<body>
+	<include file="./Application/Tpl/navi.html" active="home" />
+	<div class="container">
+		<include file="./Application/Tpl/homeSlide.html" />
+		<div class="row">
+			<include file="auctionLeft" />
+            <div class="col-md-9 nopaddingleft nopaddingright">
+                <div class="panel panel-warning">
+					<div class="panel-heading">
+						拍卖详情
+						<span class="pull-right">
+<!-- 							<a href="javascript:window.location.reload()">刷新</a> -->
+							<if condition="$Think.session.latestActive eq 'active'">
+								<a href="__CONTROLLER__/latestAuctionList">返回</a>
+							<else/>
+								<a href="__CONTROLLER__/historyAuctionList">返回</a>
+							</if>
+						</span>
+					</div>
+					<div class="panel-body" style="padding:0px">
+						<div style="margin: 10px; padding:10px;">{$record.description}</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">拍卖物品列表</div>
+							<div class="panel-body"  style="padding: 5px">
+								<div class="table-responsive">
+									<table class="table table-striped table-hover" style="margin-bottom: 0;">
+										<thead>
+											<tr>
+												<th width="45px;">序号</th>
+												<th>类型</th>
+												<th>物品名称</th>
+<!-- 												<th>起拍价</th> -->
+<!-- 												<th>最终价</th> -->
+												<th>获得者</th>
+<!-- 												<th>详情及留言</th> -->
+											</tr>
+										</thead>
+										<volist name="list" id="vo">
+										<tr>
+											<td align="center">{$key + 1}</td>
+											<td width="150px;">{$productCategoryList[$vo[category]]}</td>
+											<td><a href="__CONTROLLER__/viewAuctionGoods/uid/{$vo.uid}">{$vo.name}</a></td>											
+<!-- 											<td width="100px;">{$vo.begin_price}</td>											 -->
+<!-- 											<td width="100px;"> -->
+<!-- 												<if condition="$vo.end_price eq 0"> -->
+<!-- 													- -->
+<!-- 												<else/> -->
+<!-- 													{$vo.end_price} -->
+<!-- 												</if> -->
+<!-- 											</td> -->
+											<td>{$vo.winner}</td>
+<!-- 											<td width="100px;"> -->
+<!-- 												<a href="__CONTROLLER__/viewAuctionGoods/uid/{$vo.uid}">详情及留言</a> -->
+<!-- 											</td> -->
+										</tr>
+										</volist>
+									</table>									
+								</div>
+								<div align="center" style="margin-top: 0">
+									<ul class="pagination nomargin">{$page}
+									</ul>
+								</div>						
+							</div>
+						</div>
+						
+						<div class="panel panel-default" style="margin-bottom: 0;">
+							<div class="panel-heading">&nbsp;
+								<span class="pull-left">拍卖留言</span>
+								<span class="pull-right">
+									<a href="javascript:togglePostMsgArea()">发表留言</a>
+								</span>
+							</div>
+							
+							<div class="panel-body"  style="padding: 5px">
+							
+								<table class="table table-striped table-hover"  style="margin-bottom: 0;">
+									<thead id="postMessageInputArea" style="display:none">
+										<td style="border-bottom: 1px solid #ddd">
+											<form class="inline-form" id="theform" action="__CONTROLLER__/addAuctionMsg" method="post">
+												<div align="center"><strong>快速留言</strong></div>
+												<div class="form-group" style="margin:0;margin-bottom:10px">
+													<label for="message" class="control-label">留言内容</label>
+													<textarea class="form-control" name="message"
+														id="message" placeholder="请输入留言内容" rows="5" required></textarea>
+												</div>
+												<div class="form-group">
+													<div class="input-group">
+														<span class="input-group-addon"><span class="glyphicon glyphicon-flag"></span></span> <input type="text"
+															id="code" name="code" class="form-control" placeholder="验证码" required style="width: 150px">&nbsp;&nbsp;
+														<img class="verify" title="点击刷新验证码" src="__ROOT__/Home/Common/genverify">
+													</div>
+												</div>
+												<div align="center">
+													<button type="submit" class="btn btn-info">提交留言</button>
+													<button type="button" onclick="togglePostMsgArea()" class="btn btn-default">取消</button>
+												</div>
+											</form>
+										</td>
+									</thead>
+									<empty name="messageList">
+										<tr>
+											<td>
+												<div align="center">暂无留言！</div>
+											</td>
+										</tr>
+									<else/>
+									<volist name="messageList" id="vo">									
+										<tr>
+											<if condition="$key eq 0">
+											<td style="padding-top:15px;padding-bottom:15px;border-top: 0">
+											<else/>
+											<td style="padding-top:15px;padding-bottom:15px;">
+											</if>
+												<div style="margin-bottom:12px">
+													<empty name="vo.goods_uid">
+													{$vo.author}对拍卖的留言
+													<else/>
+													{$vo.author}对物品<a href="__CONTROLLER__/viewAuctionGoods/uid/{$vo.goods_uid}">{$vo.name}</a>的留言
+													</empty>
+													<if condition="$vo.author_location neq ''">													
+														<span class="graytext"><!-- [ip：{$vo.author_ip}]  -->[来自：{$vo.author_location}]</span>
+													</if>
+													<span class="pull-right graytext">
+														{$vo.post_time} 发表
+<!-- 															&nbsp;&nbsp;<a href="javascript:toggleReplyMsg({$key})">回复</a> -->
+													</span>
+												</div>
+												<span class="message-content">
+													<php>
+														$msg = $vo["message"];
+														$msg = str_replace("<", "&lt;", $msg);
+														$msg = str_replace(">", "&gt;", $msg);
+														echo $msg;
+													</php>
+												</span>
+												<form id="replyForm{$key}" style="display: none" class="inline-form" action="__CONTROLLER__/addAuctionMsg" method="post">
+													<input type="hidden" name="pid" value="{$vo.uid}">
+													<div class="form-group" style="margin:0;margin-bottom:10px">
+														<label for="message" class="control-label">回复内容</label>
+														<textarea class="form-control" name="message"
+															id="message" placeholder="请输入回复内容" rows="5" required></textarea>
+													</div>
+													<div class="form-group">
+														<div class="input-group">
+															<span class="input-group-addon"><span class="glyphicon glyphicon-flag"></span></span> <input type="text"
+																id="code" name="code" class="form-control" placeholder="验证码" required style="width: 150px">&nbsp;&nbsp;
+															<img class="verify" title="点击刷新验证码" src="__ROOT__/Home/Common/genverify">
+														</div>
+													</div>
+													<div align="center">
+														<button type="submit" class="btn btn-info">回复</button>
+														<button type="button" onclick="toggleReplyMsg($key)" class="btn btn-default">取消</button>
+													</div>
+												</form>
+											</td>
+										</tr>
+									</volist>
+									</empty>
+								</table>								
+							</div>
+						</div>
+                   	</div>
+                </div>
+            </div>
+		</div>
+	</div>
+	
+	<include file="./Application/Tpl/footer.html" />
+</body>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".verify").click();
+	});
+
+	$(".verify").click(function() {
+		var newUrl = $(this).attr("src") + "?F=" + Math.random();
+		$(this).attr("src", newUrl);
+	});
+	
+	var isPostMsgAreaDisplay = false;
+	function togglePostMsgArea() {
+		if (isPostMsgAreaDisplay == true) {
+			$('#postMessageInputArea').fadeOut();
+			isPostMsgAreaDisplay = false;
+		} else {
+			$('#postMessageInputArea').fadeIn();
+			isPostMsgAreaDisplay = true;
+			var newUrl = $(".verify").attr("src") + "?F=" + Math.random();
+			$(".verify").attr("src", newUrl);
+		}
+	}
+	
+	var isPostMsgAreaDisplay = false;
+	function toggleReplyMsg(formId) {
+		$('#replyForm' + formId).fadeIn();
+	}
+</script>
+</html>

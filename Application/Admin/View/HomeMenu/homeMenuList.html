@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<include file="./Application/Tpl/header-admin.html" />
+<link rel="stylesheet" href="__PUBLIC__/treeview/bootstrap-treeview.css">
+<script src="__PUBLIC__/treeview/bootstrap-treeview.js"></script>
+</head>
+
+<body>
+	<div class="container nomargin">
+		<div class="row">
+            <div class="col-md-12" align="center" style="margin:20px">
+				<button class="btn btn-success" id="addbutton">
+					<span class="glyphicon glyphicon-plus"></span>添加菜单
+				</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3 nopaddingleft">
+				<div id="tree"></div>
+			</div>
+			<div class="col-md-9">
+			</div>
+		</div>
+		
+	</div>
+	
+	
+</body>
+
+<script>
+	function getTree() {
+		// Some logic to retrieve, or generate tree structure
+		htmlobj = $.ajax({
+			url : "__ROOT__/Admin/HomeMenu/getHomeMenuListData",
+			async : false
+		});
+		$("#modalBody").html(htmlobj.responseText);
+		var tree = htmlobj.responseText;
+		// 	[{
+		// 		"text": "首页",
+		// 		enableLinks: true,
+		// 		href: "www.baidu.com",
+		// 		uid:123
+		// 	  },{
+		// 		text: "关于我们",
+		// 		nodes: [{
+		// 			text: "企业介绍",
+		// 			selectable: false
+		// 			},{
+		// 			text: "联系我们"
+		// 			}
+		// 	    ]
+		// 	  },{
+		// 		text: "新闻动态"
+		// 	  },{
+		// 		text: "Parent 4"
+		// 	  },{
+		// 		text: "Parent 5"
+		// 	  }
+		// 	];
+		return tree;
+	}
+
+	$('#tree').treeview({
+		data : getTree()
+	});
+	$('#tree').on('nodeSelected', function(event, data) {
+		// alert(data.nodes);
+	});
+
+	// var json;
+	// ajax();
+	// function ajax(){
+	//     $.ajax({
+	//         url: '__ROOT__/Admin/HomeSlide/getListInJson',//提交访问的URL
+	//         type: 'GET',//提交的方法
+	//         dataType: 'text',//返回的内容的类型，由于PHP文件是直接echo的，那么这里就是text
+	//         timeout: 5000,//超时时间
+	//         error: function(){ //如果出错，执行函数
+	//             alert('Error loading XML document' + url);
+	//         },
+	//         success: function(data){
+	//             //alert(data);//如果成功，弹出数据
+	//             json = data;
+	//             alert(json);
+	//         }
+	//     });
+	// }
+</script>
+</html>

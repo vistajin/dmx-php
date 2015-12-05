@@ -1,0 +1,16 @@
+{/* 
+手机浏览无广告
+*/}
+<if condition="$isMobile neq 1">
+	<volist name="[key]" id="vo">
+		<div class="thumbnail" style="margin-bottom: 5px;">
+			<a href="__ROOT__/Home/Seller/sellerDetails/uid/{$vo.uid}" target="_blank">
+				<empty name="vo.logo">
+					<img src="__ROOT__/Public/images/seller-logo-miss.jpg">
+				<else/>
+					<img src="__ROOT__/Uploads/{$vo.logo}">
+				</empty>
+			</a>
+		</div>
+	</volist>
+</if>

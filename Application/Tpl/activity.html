@@ -1,0 +1,35 @@
+<div class="panel panel-warning">
+	<div class="panel-heading">
+<!-- 		<div class="container"> -->
+<!-- 			<div class="row"> -->
+				最新活动
+				<span class="pull-right">
+					<a href="__ROOT__/Home/News/activityList.html">
+						更多>>
+					</a>
+				</span>
+<!-- 			</div> -->
+<!-- 		</div> -->
+	</div>
+	<div class="panel-body" style="padding-bottom: 0;">
+		<ul>
+			<volist name="activityList" id="vo">
+			<li class="dash-li">
+<!-- 				<a data-toggle="modal" href="#myModal" -->
+<!-- 					onclick="viewRichText({$vo.uid}, '最新活动 - {$vo.title}')">{$vo.title}</a> -->
+				<a href="javascript: viewNewDetails({$vo.uid})">{$vo.title}</a>
+			</li>
+			</volist>
+		</ul>
+	</div>
+</div>
+
+<form id="viewActibityForm" action="__ROOT__/Home/News/viewDetails.html" method="post">
+	<input type="hidden" id="uid" name="uid">
+</form>
+<script>
+function viewNewDetails(uid) {
+	$("#uid").val(uid);
+	$("#viewActibityForm").submit();
+}
+</script>

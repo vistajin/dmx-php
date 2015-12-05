@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<include file="./Application/Tpl/header.html" />
+<link rel="stylesheet" href="__PUBLIC__/treeview/bootstrap-treeview.css">
+<script src="__PUBLIC__/treeview/bootstrap-treeview.js"></script>
+
+<link rel="stylesheet" href="__PUBLIC__/lightbox/ekko-lightbox.min.css">
+<script src="__PUBLIC__/lightbox/ekko-lightbox.min.js"></script>
+<title>东鸣轩收藏品中心</title>
+</head>
+
+<body>
+	<include file="./Application/Tpl/navi.html" active="home" />
+	<div class="container">
+		<include file="./Application/Tpl/homeSlide.html" />
+		<div class="row">
+			<div class="col-md-3 nopaddingleft">
+				<div class="divbox">
+					<div class="title index-hd ">
+						<em>产品列表</em>
+					</div>
+					<div id="tree"></div>
+				</div>
+
+				<div class="divbox">
+					<div class="title index-hd ">
+						<em>联系我们</em>
+					</div>
+					<ul>
+						<li class="dash-li">电话：13632326263</li>
+						<li class="dash-li">传真：13632326263</li>
+						<li class="dash-li">邮箱：528189@qq.com</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-9 nopaddingleft nopaddingright">
+				<div class="divbox">
+					<div class="title index-hd ">
+						<em>当前位置 > 产品展示 > {$productRecord.text}</em>
+					</div>
+					<div class="row">
+						<div class="col-md-offset-1 col-md-10">
+							<div class="row">
+								<volist name="imageList" id="vo">
+								<a href="{$vo.img_url}" data-toggle="lightbox" data-gallery="imagesizes" class="col-sm-3">
+									<img src="{$vo.img_url}" class="img-responsive">
+								</a>
+								</volist>
+								<BR/>								
+							</div>
+						</div>
+						<button class="btn btn-default" onclick="history.go(-1)">返回</button>
+					</div>
+					<div class="row" style="margin: 20px">
+					<p>{$productRecord.description}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<include file="./Application/Tpl/footer.html" />
+</body>
+<script>
+	$('#tree').treeview({
+		data : {$tree}
+	});
+	$('#tree').on('nodeSelected', function(event, data) {
+		//alert(data.nodes);
+		alert("Coming soon...");
+	});
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function ($) {
+		// delegate calls to data-toggle="lightbox"
+		$(document).delegate('*[data-toggle="lightbox"]:not([data-gallery="navigateTo"])', 'click', function(event) {
+				event.preventDefault();
+				return $(this).ekkoLightbox({
+					onShown: function() {
+						if (window.console) {
+							return console.log('Checking our the events huh?');
+						}
+					},
+					onNavigate: function(direction, itemIndex) {
+						if (window.console) {
+							return console.log('Navigating '+direction+'. Current item: '+itemIndex);
+						}
+					}
+				});
+			});
+		});
+</script>
+</html>

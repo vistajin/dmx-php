@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link href="__PUBLIC__/images/band.jpg" rel="shortcut icon">
+<title>东鸣轩 - 后台管理系统</title>
+<link href="__PUBLIC__/bui/assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/bui/assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/bui/assets/css/main-min.css" rel="stylesheet" type="text/css" />
+<script src="__PUBLIC__/bui/assets/js/jquery-1.8.1.min.js"></script>
+<script src="__PUBLIC__/bui/assets/js/bui-min.js"></script>
+<script src="__PUBLIC__/bui/assets/js/common/main-min.js"></script>
+<script src="__PUBLIC__/bui/assets/js/config-min.js"></script>
+</head>
+<body>
+	<div class="header">
+		<div class="dl-title">
+			<span class="lp-title-port">东鸣轩商城 - 后台管理系统</span>
+		</div>
+		<div class="dl-log">
+			{$data.time|default=time()|date='Y年m月d日',###} 欢迎您，<span class="dl-log-user">{$Think.session.user_auth.username}</span>
+			<a href="__ROOT__/Admin/Login/logout" title="退出系统" class="dl-log-quit">[退出]</a>
+		</div>
+	</div>
+	<div class="content">
+		<div class="dl-main-nav">
+			<div class="dl-inform">
+				<div class="dl-inform-title">
+					<s class="dl-inform-icon dl-up"></s>
+				</div>
+			</div>
+			<ul id="J_Nav" class="nav-list ks-clear">
+				<li class="nav-item dl-selected">
+					<div class="nav-item-inner nav-home">首页管理</div>
+				</li>
+<!-- 				<li class="nav-item"> -->
+<!-- 					<div class="nav-item-inner nav-order">联系信息管理</div> -->
+<!-- 				</li> -->
+<!-- 				<li class="nav-item"> -->
+<!-- 					<div class="nav-item-inner nav-supplier">商家管理</div> -->
+<!-- 				</li> -->
+<!-- 				<li class="nav-item"> -->
+<!-- 					<div class="nav-item-inner nav-supplier">新闻中心</div> -->
+<!-- 				</li> -->
+<!-- 				<li class="nav-item"> -->
+<!-- 					<div class="nav-item-inner nav-supplier">关于我们</div> -->
+<!-- 				</li> -->
+				<li class="nav-item">
+					<div class="nav-item-inner nav-sample">拍卖管理</div>
+				</li>
+				<li class="nav-item">
+					<div class="nav-item-inner nav-supplier">其他管理</div>
+				</li>
+			</ul>
+		</div>
+
+		<ul id="J_NavContent" class="dl-tab-content"></ul>
+	</div>
+	
+	<script>
+		BUI.use('common/main', function() {
+			var config = [ {
+				id : 'menu',
+				homePage : 'homeslide',
+				menu : [ {
+					text : '首页管理',
+					items : [ {
+						id : 'homeslide',
+						text : '首页幻灯片',
+						href : '__ROOT__/Admin/HomeSlide/slideList'
+					},{
+						id : 'announcement',
+						text : '商城公告',
+						href : '__ROOT__/Admin/RichEdit/getList/category/announcement'
+					}]
+				},{
+					text : '首页菜单',
+					items : [ {
+						id : 'homemenu',
+						text : '首页菜单列表',
+						href : '__ROOT__/Admin/HomeMenu/homeMenuList'
+					},
+					]
+				},{
+					text : '广告管理',
+					items : [ {
+						id : 'homeleftads',
+						text : '首页左侧广告',
+						href : '__ROOT__/Admin/Ads/adsList/category/homeleftads'
+					},{
+						id : 'homerightads',
+						text : '首页右侧广告',
+						href : '__ROOT__/Admin/Ads/adsList/category/homerightads'
+					},{
+						id : 'otherleftads',
+						text : '其他页左侧广告',
+						href : '__ROOT__/Admin/Ads/adsList/category/otherleftads'
+					}]
+				}]
+			}, {
+				id : 'auction',
+				menu : [ {
+					text : '拍卖管理',
+					items : [{
+						id : 'auctionList',
+						text : '拍卖活动列表',
+						href : '__ROOT__/Admin/Auction/auctionList'
+					},{
+						id : 'addAuction',
+						text : '添加拍卖活动',
+						href : '__ROOT__/Admin/Auction/addAuctionIn'
+					},{
+						id : 'auctionGoodsList',
+						text : '物品列表',
+						href : '__ROOT__/Admin/AuctionGoods/auctionGoodsList'
+					},{
+						id : 'addAuction',
+						text : '添加物品',
+						href : '__ROOT__/Admin/AuctionGoods/addAuctionGoodsIn'
+					}]
+				}]
+			}, {
+				id : 'companyinfo',
+				menu : [ {
+					text : '新闻中心',
+					items : [{
+						id : 'activity',
+						text : '商城活动',
+						href : '__ROOT__/Admin/RichEdit/getList/category/activity'
+					},{
+						id : 'news',
+						text : '商城新闻',
+						href : '__ROOT__/Admin/RichEdit/getList/category/news'
+					},{
+						id : 'story',
+						text : '商城故事',
+						href : '__ROOT__/Admin/RichEdit/getList/category/story'
+					}]
+				} , {
+					text : '商家管理',
+					items : [ {
+						id : 'sellerlist',
+						text : '商家列表',
+						href : '__ROOT__/Admin/Seller/sellerList'
+					},{
+						id : 'addseller',
+						text : '添加商家',
+						href : '__ROOT__/Admin/Seller/addSellerIn'
+					}]
+				}, {
+					text : '留言管理',
+					items : [ {
+						id : 'msglist',
+						text : '留言列表',
+						href : '__ROOT__/Admin/Message/msglist'
+					}]
+				}, {
+					text : '关于我们',
+					items : [{
+						id : 'corpbrief',
+						text : '公司简介',
+						href : '__ROOT__/Admin/RichEdit/editSimpleRichText/category/corpbrief'
+					}, {
+						id : 'contactus',
+						text : '联系我们',
+						href : '__ROOT__/Admin/RichEdit/editSimpleRichText/category/contactus'
+					},{
+						id : 'position',
+						text : '位置信息',
+						href : '__ROOT__/Admin/RichEdit/editSimpleRichText/category/position'
+					}]
+				},{
+					text : '其他',
+					items : [ {
+						id : 'freeservice',
+						text : '免费服务',
+						href : '__ROOT__/Admin/RichEdit/editSimpleRichText/category/freeservice'
+					}]
+				},{
+					text : '产品管理',
+					items : [ {
+						id : 'prodcategory',
+						text : '产品类别管理',
+						href : '__ROOT__/Admin/Product/getCategories'
+					}, {
+						id : 'product',
+						text : '产品管理',
+						href : '__ROOT__/Admin/Product/productList'
+					} ]
+				},{
+					text : '访客记录',
+					items : [ {
+						id : 'accessCounterRecord',
+						text : '访问次数',
+						href : '__ROOT__/Admin/AccessTrace/getCounterList'
+					}, {
+						id : 'accessDetails',
+						text : '访问详情',
+						href : '__ROOT__/Admin/AccessTrace/getDetailsList'
+					} ]
+				} ]
+			}];
+			new PageUtil.MainPage({
+				modulesConfig : config
+			});
+		});
+	</script>
+</body>
+</html>

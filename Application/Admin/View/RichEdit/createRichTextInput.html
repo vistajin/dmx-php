@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<include file="./Application/Tpl/header-admin.html" />
+<script charset="utf-8" src="__PUBLIC__/kindeditor/kindeditor.js"></script>
+<script charset="utf-8" src="__PUBLIC__/kindeditor/lang/zh_CN.js"></script>
+<link href="__PUBLIC__/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+<script charset="utf-8" src="__PUBLIC__/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script charset="utf-8" src="__PUBLIC__/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<link href="__PUBLIC__/bootstrap-toggle/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="__PUBLIC__/bootstrap-toggle/js/bootstrap-toggle.min.js"></script>
+<script>
+	KindEditor.ready(function(K) {
+		window.editor = K.create('#editor_id');
+	});
+</script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h3>添加{$categoryText}</h3>
+		</div>
+		<form action="{:U('Admin/RichEdit/addRichText')}" method="post">
+			<div class="form-group">
+				<label for="title">{$categoryText}标题</label> <input type="text" class="form-control" name="title" id="title"
+					placeholder="请输入{$categoryText}标题">
+			</div>
+			<div class="form-group">
+				<label for="isShow">是否显示？</label>
+				<input type="checkbox" class="form-control" name="isShow" id="isShow" data-toggle="toggle" value="1" checked>
+			</div>
+			<div class="form-group">
+				<label for="thedate">{$categoryText}日期</label>
+				<!-- 				<input type="text" class="form-control" name="thedate" id="thedate" -->
+				<!-- 					placeholder="请输入{$categoryText}日期"> -->
+				<div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd"
+					data-link-field="thedate" data-link-format="yyyy-mm-dd" style="width: 200px;">
+					<input class="form-control" size="16" type="text" value="" readonly placeholder="请选择日期"> <span class="input-group-addon"><span
+						class="glyphicon glyphicon-remove"></span></span> <span class="input-group-addon"><span
+						class="glyphicon glyphicon-calendar"></span></span>
+				</div>
+				<input type="hidden" id="thedate" name="thedate" value="" />
+			</div>
+			<div class="form-group">
+				<label for="editor_id">{$categoryText}内容</label>
+				<textarea id="editor_id" name="content" style="width: 100%; height: 400px;">{$richText}</textarea>
+			</div>
+
+			<div align="center">
+				<button class="btn btn-success" type="submit" id="save" value="submit">提交</button>
+				<button type="button" class="btn btn-default" id="backbtn">取消</button>
+				<BR />
+				<BR />
+				<BR />
+			</div>
+			<input type="hidden" name="category" value="{$category}">
+		</form>
+	</div>
+
+	<form id="form" action="__CONTROLLER__/getList/category/{$category}" method="post"></form>
+</body>
+<script>
+$("#backbtn").click(function() {
+    $("#form").submit();
+});
+
+$('.form_date').datetimepicker({
+    language:  'zh-CN',
+    weekStart: 1,
+    todayBtn:  1,
+	autoclose: 1,
+	todayHighlight: 1,
+	startView: 2,
+	minView: 2,
+	forceParse: 0
+});
+</script>
+</html>

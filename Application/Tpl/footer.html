@@ -1,0 +1,31 @@
+<div class="myfooter">
+	您是今天第&nbsp;<strong><span id="tdNo"></span></strong>&nbsp;位访客，历史第&nbsp;<strong><span id="ttlNo"></span></strong>&nbsp;位访客，</span>日均：<strong><span id="avgNo"></span></strong>，最高：<strong><span id="maxNo"></span></strong>
+	<br />
+	<strong>©2015</strong>&nbsp;&nbsp;<span>东鸣阁投资管理有限公司 粤ICP备15055320号</span>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$.ajax({
+			url : '__ROOT__/Home/AccessTrace/trace', //提交访问的URL
+			type : 'GET',//提交的方法
+			dataType : 'text',//返回的内容的类型，由于PHP文件是直接echo的，那么这里就是text
+			data : {
+				url : "__URL__"
+			}, // 提交的数据
+			timeout : 5000,//超时时间
+			error : function() { //如果出错，执行函数
+				//alert('Error loading XML document' + url);
+			},
+			success : function(data) {
+				//alert(data);
+				var jsonData = eval("(" + data + ")");//转换为json对象  
+				$("#tdNo").text(jsonData.todayNo);//如果成功，显示数据
+				$("#ttlNo").text(jsonData.totalNo);
+				$("#avgNo").text(jsonData.avgNo);
+				$("#maxNo").text(jsonData.maxNo);
+			}
+		});
+
+	});
+</script>

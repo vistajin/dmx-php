@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<include file="./Application/Tpl/header-admin.html" />
+<meta name="description" content="东鸣轩" />
+<meta name="author" content="Vista JIN" />
+<meta name="keywords" CONTENT="东鸣轩" />
+<title>东鸣轩商城</title>
+<link href="__PUBLIC__/fileinput-master/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+<script src="__PUBLIC__/fileinput-master/js/fileinput.js"></script>
+<script charset="utf-8" src="__PUBLIC__/kindeditor/kindeditor.js"></script>
+<script charset="utf-8" src="__PUBLIC__/kindeditor/lang/zh_CN.js"></script>
+<link href="__PUBLIC__/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+<script charset="utf-8" src="__PUBLIC__/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script charset="utf-8" src="__PUBLIC__/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script>
+	KindEditor.ready(function(K) {
+		window.editor = K.create('#editor_id');
+	});
+</script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="page-header nomargin">
+			<h3>编辑拍卖活动</h3>
+		</div>
+		<form enctype="multipart/form-data" action="__ROOT__/Admin/Auction/updateAuction" method="post">
+			<input type="hidden" name="uid" value="{$record.uid}">
+			<div class="form-group">
+				<label for="title">拍卖活动主题</label>
+				<input type="text" class="form-control" name="title" id="title" required
+					value="{$record.title}">
+			</div>
+			<div class="form-group">
+				<label for="start_date">拍卖活动开始日期</label>
+				<div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd"
+					data-link-field="start_date" data-link-format="yyyy-mm-dd" style="width: 210px;">
+					<input class="form-control" size="16" type="text" value="{$record.start_date}" readonly placeholder="请选择日期" required> <span class="input-group-addon"><span
+						class="glyphicon glyphicon-remove"></span></span> <span class="input-group-addon"><span
+						class="glyphicon glyphicon-calendar"></span></span>
+				</div>
+				<input type="hidden" id="start_date" name="start_date" value="{$record.start_date}" />
+			</div>
+			<div class="form-group">
+				<label for="end_date">拍卖活动结束日期</label>
+				<div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd"
+					data-link-field="end_date" data-link-format="yyyy-mm-dd" style="width: 210px;">
+					<input class="form-control" size="16" type="text" value="{$record.end_date}" readonly placeholder="请选择日期" required> <span class="input-group-addon"><span
+						class="glyphicon glyphicon-remove"></span></span> <span class="input-group-addon"><span
+						class="glyphicon glyphicon-calendar"></span></span>
+				</div>
+				<input type="hidden" id="end_date" name="end_date" value="{$record.end_date}" />
+			</div>
+			<div class="form-group">
+				<label for="photo">拍卖活动缩略图 (jpg, png, gif, jpeg)</label><br>
+				<img src="__ROOT__/Uploads/{$record.photo_url}">
+				<input name="photo" id="photo" class="file form-control" type="file" multiple data-min-file-count="0">
+			</div>
+			<div class="form-group">
+				<label for="description">拍卖活动详情</label>
+				<textarea id="editor_id" name="description" style="width: 100%; height: 400px;">{$record.description}</textarea>
+			</div>
+			<div align="center">
+				<button type="submit" class="btn btn-info">确定</button>
+				<button type="button" class="btn btn-default" onclick="history.go(-1)">取消</button>
+			</div>
+		</form>
+		<br/><br/>
+	</div>
+
+</body>
+<script>
+$("#photo").fileinput({
+    'allowedFileExtensions' : ['jpg', 'png','gif', 'jpeg'],
+});
+$('.form_date').datetimepicker({
+    language:  'zh-CN',
+    weekStart: 1,
+    todayBtn:  1,
+	autoclose: 1,
+	todayHighlight: 1,
+	startView: 2,
+	minView: 2,
+	forceParse: 0
+});
+</script>
+</html>

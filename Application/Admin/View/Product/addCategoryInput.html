@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<include file="./Application/Tpl/header-admin.html" />
+</head>
+
+<body>
+	<div class="container nomargin">
+		<div class="page-header">
+			<h3>添加产品类别</h3>
+		</div>
+		<form action="{:U('Admin/Product/addCategory')}" method="post">
+			<input type="hidden" name="parent_uid" value="{$parent_uid}"> <!-- TODO: always 0 for first level -->
+			<div class="form-group">
+				<label for="title">类别名称</label>
+				<input type="text" class="form-control" name="text" placeholder="请输入产品类别名称" required autofocus>
+			</div><br/>
+			<div align="center">
+				<button class="btn btn-success" type="submit" id="save" value="submit">提交</button>
+				<button type="button" class="btn btn-default" onclick="history.go(-1)">取消</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

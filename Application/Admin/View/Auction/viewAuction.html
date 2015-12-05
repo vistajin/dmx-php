@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<include file="./Application/Tpl/header-admin.html" />
+<meta name="description" content="东鸣轩" />
+<meta name="author" content="Vista JIN" />
+<meta name="keywords" CONTENT="东鸣轩" />
+<title>东鸣轩商城</title>
+</head>
+
+<body>
+	<div class="container">
+		<div class="page-header nomargin" align="center">
+			<h3>拍卖活动详情</h3>
+		</div>
+		<form class="form-horizontal">
+			<div>
+				<label class="col-sm-3 control-label">拍卖活动主题</label>
+				<div class="col-sm-9">
+					<p class="form-control-static">{$record.title}</p>
+				</div>
+			</div>
+			<div>
+				<label class="col-sm-3 control-label">拍卖活动开始日期</label>
+				<div class="col-sm-9">
+					<p class="form-control-static">{$record.start_date}</p>
+				</div>
+			</div>
+			<div>
+				<label class="col-sm-3 control-label">拍卖活动结束日期</label>
+				<div class="col-sm-9">
+					<p class="form-control-static">{$record.end_date}</p>
+				</div>
+			</div>
+			<div>
+				<label class="col-sm-3 control-label">拍卖图片</label>
+				<div class="col-sm-9">
+					<p class="form-control-static"><img src="__ROOT__/Uploads/{$record.photo_url}"></p>
+				</div>
+			</div>
+			<div>
+				<label class="col-sm-3 control-label">拍卖详情</label>
+				<div class="col-sm-9">
+					{$record.description}
+				</div>
+			</div>			
+		</form>
+	</div>
+	
+	<empty name="list">
+	<div class="container">
+		<div class="page-header" align="center">
+			<h4>该拍卖还没有物品！</h4>
+		</div>
+	</div>
+	<else />	
+	<div class="table-responsive">
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th width="45px;">序号</th>
+					<th>物品名称</th>
+					<th>状态</th>
+					<th>类别</th>
+					<th>起拍价</th>
+					<th>最终价</th>
+					<th>起拍时间</th>
+					<th>结束时间</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<volist name="list" id="vo">
+			<tr>
+				<td align="center">{$key + 1}</td>
+				<td>{$vo.name}</td>
+				<td width="100px;">
+					{$goodsStatusList[$vo[auction_status]]}
+				</td>
+				<td width="150px;">{$productCategoryList[$vo[category]]}</td>
+				<td width="100px;">{$vo.begin_price}</td>
+				<td width="100px;">
+					<if condition="$vo.end_price eq 0">
+						-
+					<else/>
+						{$vo.end_price}
+					</if>
+				</td>
+				<td width="150px;">{$vo.begin_time}</td>
+				<td width="150px;">{$vo.end_time}</td>				
+				<td width="100px;">
+					<a href="__CONTROLLER__/editLinkedGoodsIn/auction_uid/{$record.uid}/auction_goods_uid/{$vo.auction_goods_uid}" class="btn btn-info" title="修改">
+						<span class="glyphicon glyphicon-pencil"></span>
+					</a>						
+					<button class="btn btn-danger" data-toggle="modal" data-target="#myModal" onclick="setUid({$vo.auction_goods_uid})" title="取消关联">
+						<span class="glyphicon glyphicon-remove"></span>
+					</button>
+				</td>
+			</tr>
+			</volist>
+		</table>
+	</div>
+	</empty>
+	<div class="container" align="center" style="margin-top: 0">
+		<ul class="pagination nomargin">{$page}
+		</ul>
+	</div>
+		
+	<div align="center">
+		<a href="__CONTROLLER__/auctionList" class="btn btn-default" >返回</a><br><br>
+	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">警告</h4>
+				</div>
+				<div class="modal-body">确定要将该物品从拍卖活动中取消关联吗？</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="button" class="btn btn-danger" onclick="detachAuctionGoods()">确定取消关联</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<form id="theform" method="post">
+		<input type="hidden" id="auction_uid" name="auction_uid" value="{$record.uid}">
+		<input type="hidden" id="auction_goods_uid" name="auction_goods_uid">
+	</form>
+</body>
+
+<script>
+function submitForm(url) {
+    $("#theform").attr("action", url);
+    $("#theform").submit();
+}
+
+function setUid(uid) {
+    $("#auction_goods_uid").val(uid);    
+}
+
+function detachAuctionGoods() {
+	submitForm("__CONTROLLER__/detachAuctionGoods");
+}
+</script>
+</html>
+</html>

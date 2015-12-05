@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<include file="./Application/Tpl/header-admin.html" />
+<meta name="description" content="东鸣轩" />
+<meta name="author" content="Vista JIN" />
+<meta name="keywords" CONTENT="东鸣轩" />
+<title>东鸣轩商城</title>
+<link href="__PUBLIC__/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+<script charset="utf-8" src="__PUBLIC__/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script charset="utf-8" src="__PUBLIC__/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="page-header nomargin">
+			<h3>编辑关联物品</h3>
+		</div>
+		<form enctype="multipart/form-data" action="__ROOT__/Admin/Auction/updateLinkedGoods" method="post">
+			<input type="hidden" name="auction_uid" value="{$record.auction_uid}">
+			<input type="hidden" name="auction_goods_uid" value="{$record.auction_goods_uid}">
+			<div class="form-group">
+				<label>物品名称</label>
+				<p class="form-control-static">{$record.name}</p>
+			</div>			
+			<div class="form-group">
+				<label for="auction_status">物品状态</label>
+				<select class="form-control" required style="width:100px" name="auction_status" id="auction_status">
+					<volist name="goodsStatusList" id="vo">
+					<if condition="$key eq $record['auction_status']">
+						<option value="{$key}" selected>{$vo}</option>
+					<else/>
+						<option value="{$key}">{$vo}</option>
+					</if>					
+					</volist>
+				</select>
+			</div>
+			<div class="form-group">
+				<label>物品类别</label>
+				<p class="form-control-static">{$productCategoryList[$record[category]]}</p>
+			</div>
+			<div class="form-group">
+				<label for="begin_price">起拍价</label>
+				<input type="text" class="form-control" name="begin_price" id="begin_price" required
+					style="width: 150px;" value="{$record.begin_price}">
+			</div>
+			<div class="form-group">
+				<label for="end_price">最终价</label>
+				<input type="text" class="form-control" name="end_price" id="end_price" 
+					style="width: 150px;" value="{$record.end_price}">
+			</div>
+			<div class="form-group">
+				<label for="end_price">获得者</label>
+				<input type="text" class="form-control" name="winner" id="winner" 
+					style="width: 150px;" value="{$record.winner}">
+			</div>
+			<div class="form-group">
+				<label for="begin_time">起拍时间</label>
+				<div class="input-group date form_datetime" data-date="" data-date-format="yyyy-mm-dd hh:ii"
+					data-link-field="begin_time" data-link-format="yyyy-mm-dd hh:ii:00" style="width: 240px;">
+					<input class="form-control" size="16" type="text" value="{$record.begin_time}" readonly >
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+				</div>
+				<input type="hidden" id="begin_time" name="begin_time" value="{$record.begin_time}"/>
+			</div>
+			<div class="form-group">
+				<label for="end_time">结束时间</label>
+				<div class="input-group date form_datetime" data-date="" data-date-format="yyyy-mm-dd hh:ii"
+					data-link-field="end_time" data-link-format="yyyy-mm-dd hh:ii:00" style="width: 240px;">
+					<input class="form-control" size="16" type="text" value="{$record.end_time}" readonly >
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+				</div>
+				<input type="hidden" id="end_time" name="end_time" value="{$record.end_time}" />
+			</div>
+			<div align="center">
+				<button type="submit" class="btn btn-info">确定</button>
+				<button type="button" class="btn btn-default" onclick="history.go(-1)">取消</button>
+			</div>
+		</form>
+		<br/><br/>
+	</div>
+
+</body>
+<script>
+$('.form_datetime').datetimepicker({
+    language:  'zh-CN',
+    weekStart: 1,
+    todayBtn:  1,
+	autoclose: 1,
+	todayHighlight: 1,
+	startView: 2,
+	forceParse: 0,
+    showMeridian: 1
+});
+</script>
+</html>

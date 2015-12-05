@@ -1,0 +1,44 @@
+<include file="./Application/Tpl/header-admin.html" />
+<link href="__PUBLIC__/fileinput-master/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+<script src="__PUBLIC__/fileinput-master/js/fileinput.js"></script>
+
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h3>编辑幻灯片</h3>
+        </div>
+        <form enctype="multipart/form-data" action="__CONTROLLER__/updateSlide" id="updateform" method="post">
+            <div class="form-group">
+                <label for="description">幻灯片描述</label>
+                <input type="text" class="form-control" name="description" id="description" value="{$record.description}">
+            </div><br/>
+            <input type="hidden" name="uid" value="{$record.uid}">
+            <div class="form-group">
+                <label for="photo">幻灯片图片 (jpg, png, gif, jpeg)</label><br>
+                <img src="__ROOT__/Uploads/{$record.path}">
+                <input name="photo" id="photo" class="file form-control" type="file" multiple data-min-file-count="0">
+            </div>        
+            <div align="center">
+                <button type="submit" class="btn btn-primary" id="confirmbtn">确定</button>
+                <button type="button" class="btn btn-default" id="backbtn">取消</button>
+            </div>
+        </form>
+    </div>
+
+    <form id="backform" action="__CONTROLLER__/slideList" method="post"></form>
+
+</body>
+<script>
+$("#photo").fileinput({
+    'allowedFileExtensions' : ['jpg', 'png','gif', 'jpeg'],
+});
+
+$("#backbtn").click(function() {
+    $("#backform").submit();
+});
+
+$("#confirmbtn").click(function() {
+    $("#confirmform").submit();
+});
+</script>
+</html>

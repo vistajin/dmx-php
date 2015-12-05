@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<include file="./Application/Tpl/header.html" />
+<link rel="stylesheet" href="__PUBLIC__/treeview/bootstrap-treeview.css">
+<script src="__PUBLIC__/treeview/bootstrap-treeview.js"></script>
+<title>东鸣轩收藏品中心</title>
+</head>
+
+<body>
+	<include file="./Application/Tpl/navi.html" active="home" />
+	<div class="container">
+		<include file="./Application/Tpl/homeSlide.html" />
+		<div class="row">
+			<include file="auctionLeft" />
+            <div class="col-md-9 nopaddingleft nopaddingright">
+                <div class="panel panel-warning">
+					<div class="panel-heading">{$subtitle}</div>
+					<div class="panel-body"  style="padding: 5px">
+						<empty name="auctionList">
+							目前没有{$subtitle}！
+						<else/>	                   		
+							<volist name="auctionList" id="vo">
+								<div class="row">
+									<div class="col-md-4" style="padding-right:2px">
+			            				<div class="thumbnail" style="padding-bottom:0">
+<!-- 			            					<div class="icon"> -->
+<!-- 												<span class="two">HOT！</span> -->
+<!-- 											</div> -->
+			                                <a href="javascript:viewAuction({$vo.uid})" >
+			                                	<img src="__ROOT__/Uploads/{$vo.photo_url}" >
+			                                </a>
+<!-- 			                				<div align="center"> -->
+<!-- 			                					<small class="gray"> -->
+<!-- 			                						<span class="pull-right">{$vo.thedate}</span> -->
+<!-- 			                					</small> -->
+<!-- 				                    			<strong><a href="javascript:viewAuction({$vo.uid})">{$vo.thedate}</a></strong> -->
+<!-- 			                				</div>			                				 -->
+			           				 	</div>
+			        				</div>
+			        				<div class="col-md-8" style="height:100%;padding-left:2px">
+			        					<div class="row " style="margin-top:10px;margin-bottom:10px;">
+			        						<div class="col-md-12">
+					            				<div align="center">
+				            						<strong><a href="javascript:viewAuction({$vo.uid})">{$vo.title}</a></strong>
+				            						
+				            						<if condition="count($vo['goods_photo_urls']) gt 4">
+				            							<span class="pull-right subtitle"><a href="javascript:viewAuction({$vo.uid})">更多物品>></a></span>
+				            						</if>
+<!-- 					            						{$vo.thedate}&nbsp;&nbsp; -->
+<!-- 					            						<a href="__CONTROLLER__/viewAuction/uid/{$vo.uid}" >{$vo.title}</a> -->
+					            										            					
+					            				</div>
+				            				</div>
+			            				</div>
+			            				<notempty name="vo['goods_photo_urls']">
+			            				<div class="row" style="margin:0px;background-color: #444;">			            					
+				            				<volist name="vo['goods_photo_urls']" id="vo2" offset="0" length="3">
+												<div class="col-md-3 thumbnail" style="margin:3px;" >
+				            						<img src="__ROOT__/Uploads/{$vo2.photo_url}" />
+				            					</div>
+											</volist>
+			            				</div>
+			            				</notempty>
+			        				</div>
+			        			</div>
+			        			<hr style="border:1px dashed #EDCB83;width:100%;height:1px" />
+			        		</volist>
+		        			
+							<div align="center" style="margin-top: 0;">
+								<ul class="pagination nomargin">{$page}
+								</ul>
+							</div>
+						</empty>
+                   	</div>
+                </div>
+            </div>
+		</div>
+	</div>
+	<include file="./Application/Tpl/footer.html" />
+	<form id="theform" action="__CONTROLLER__/viewAuction.html" method="post">
+		<input type="hidden" name="uid" id="uid" >
+<!-- 		<input type="hidden" name="latestActive" id="latestActive" value="{$latestActive}"> -->
+	</form>
+</body>
+<script>
+function viewAuction(uid) {
+	$("#uid").val(uid);
+	$("#theform").submit();
+}
+</script>
+</html>

@@ -1,0 +1,81 @@
+<include file="./Application/Tpl/header-admin.html" />
+
+<body>
+	<div class="box">
+		<div class="login-box">
+			<div class="login-title text-center">
+				<h4>
+					<small>东鸣轩商城</small>
+				</h4>
+				<h1>
+					<small>登录后台</small>
+				</h1>
+			</div>
+			<div class="login-content ">
+				<div class="form">
+					<form action="{:U('Login/login')}" method="post">
+						<div class="form-group">
+							<div class="col-xs-12">
+								<div class="input-group input-group2">
+									<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span> <input type="text"
+										id="username" name="username" class="form-control" placeholder="用户名" required autofocus>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-12">
+								<div class="input-group input-group2">
+									<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span> <input type="password"
+										id="password" name="password" class="form-control" placeholder="密码" required>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-12">
+								<div class="input-group input-group2">
+									<span class="input-group-addon"><span class="glyphicon glyphicon-flag"></span></span> <input type="text"
+										id="code" name="code" class="form-control" placeholder="验证码" required style="width: 150px">&nbsp;&nbsp;
+									<img class="verify" title="点击刷新验证码" src="__ROOT__/Home/Common/genverify">
+								</div>
+							</div>
+						</div>
+						<!-- <div class="form-group form-actions">
+              <div class="col-xs-4 col-xs-offset-2">
+                <img class="verify" title="点击刷新验证码" src="{:U('Login/genverify')}" >
+              </div>
+            </div> -->
+						<div class="form-group form-actions">
+							<div class="col-xs-4 col-xs-offset-4">
+								<button type="submit" class="btn btn-sm btn-info">
+									<span class="glyphicon glyphicon-off"></span>登录
+								</button>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-6 link">
+								<p class="text-center remove-margin">
+									<small>忘记密码？</small> <a href="javascript:void(0)"><small>找回</small></a>
+								</p>
+							</div>
+							<div class="col-xs-6 link">
+								<p class="text-center remove-margin">
+									<small>还没注册?</small> <a href="javascript:void(0)"><small>注册</small></a>
+								</p>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".verify").click();
+	});
+	$(".verify").click(function() {
+		var newUrl = $(this).attr("src") + "?F=" + Math.random();
+		$(this).attr("src", newUrl);
+	});
+</script>
+</html>

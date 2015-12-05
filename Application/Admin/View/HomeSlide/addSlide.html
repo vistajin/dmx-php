@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<include file="./Application/Tpl/header-admin.html" />
+<meta name="description" content="东鸣轩" />
+<meta name="author" content="Vista JIN" />
+<meta name="keywords" CONTENT="东鸣轩" />
+<title>东鸣轩商城</title>
+<link href="__PUBLIC__/fileinput-master/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+<script src="__PUBLIC__/fileinput-master/js/fileinput.js"></script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h3>添加一张幻灯片</h3>
+		</div>
+		<form enctype="multipart/form-data" action="__ROOT__/Admin/HomeSlide/doAddSlide" method="post">
+			<div class="form-group">
+				<label for="description">幻灯片描述</label> <input type="text" class="form-control" name="description" id="description"
+					placeholder="输入幻灯片描述">
+			</div>
+			<br />
+			<div class="form-group">
+				<label for="photo">选择图片 (jpg, png, gif, jpeg)</label> <input name="photo" id="photo" class="file form-control"
+					type="file" multiple data-min-file-count="1">
+			</div>
+			<div align="center">
+				<button type="submit" class="btn btn-info">确定</button>
+				<button type="button" class="btn btn-default" id="backbtn">取消</button>
+			</div>
+		</form>
+		
+	</div>
+
+	<form id="form" action="__CONTROLLER__/slideList" method="post"></form>
+</body>
+<script>
+$("#photo").fileinput({
+    'allowedFileExtensions' : ['jpg', 'png','gif', 'jpeg'],
+});
+
+$("#backbtn").click(function() {
+    $("#form").submit();
+});
+</script>
+</html>

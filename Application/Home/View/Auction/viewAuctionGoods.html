@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<include file="./Application/Tpl/header.html" />
+<link rel="stylesheet" href="__PUBLIC__/treeview/bootstrap-treeview.css">
+<script src="__PUBLIC__/treeview/bootstrap-treeview.js"></script>
+<title>东鸣轩收藏品中心</title>
+</head>
+
+<body>
+	<include file="./Application/Tpl/navi.html" active="home" />
+	<div class="container">
+		<include file="./Application/Tpl/homeSlide.html" />
+		<div class="row">
+			<include file="auctionLeft" />
+            <div class="col-md-9 nopaddingleft nopaddingright">
+                <div class="panel panel-warning">
+					<div class="panel-heading">拍卖物品详情
+						<span class="pull-right">
+<!-- 							<a href="javascript:window.location.reload()">刷新</a> -->
+							<a href="__CONTROLLER__/viewAuction/uid/{$Think.session.auction_id}">返回</a>
+						</span>
+					</div>
+					<div class="panel-body" style="padding:0px">
+						<div class="row ">
+							<div class="col-md-4 ">
+	            				<div class="thumbnail">
+	                                <img src="__ROOT__/Uploads/{$record.photo_url}" >
+	           				 	</div>
+	        				</div>
+	        				<div class="col-md-8 ">	            				
+	            				<form class="form-horizontal">
+									<div>
+										<label class="col-sm-3 control-label-left">物品名称</label>
+										<div class="col-sm-9">
+											<p class="form-control-static">{$record.name}</p>
+										</div>
+									</div>
+<!-- 									<div> -->
+<!-- 										<label class="col-sm-3 control-label-left">起拍价</label> -->
+<!-- 										<div class="col-sm-9"> -->
+<!-- 											<p class="form-control-static">{$record.begin_price}</p> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 									<div> -->
+<!-- 										<label class="col-sm-3 control-label-left">最终价</label> -->
+<!-- 										<div class="col-sm-9"> -->
+<!-- 											<p class="form-control-static"> -->
+<!-- 												<if condition="$record.end_price eq 0"> -->
+<!-- 													- -->
+<!-- 												<else/> -->
+<!-- 													{$record.end_price} -->
+<!-- 												</if></p> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 									<div> -->
+<!-- 										<label class="col-sm-3 control-label-left">起拍时间</label> -->
+<!-- 										<div class="col-sm-9"> -->
+<!-- 											<p class="form-control-static">{$record.begin_time}</p> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 									<div> -->
+<!-- 										<label class="col-sm-3 control-label-left">结束时间</label> -->
+<!-- 										<div class="col-sm-9"> -->
+<!-- 											<p class="form-control-static">{$record.end_time}</p> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+								</form>
+	        				</div>
+	        			</div>	        			
+	        			<div style="margin: 10px; padding:10px;margin-top: 0; padding-top:0;">{$record.description}</div>						
+						<div class="panel panel-default" style="margin-bottom: 0;">
+							<div class="panel-heading">物品留言</div>
+							<div class="panel-body"  style="padding: 5px">								
+								<table class="table table-striped table-hover"  style="margin-bottom: 0;">
+									<thead>
+										<td>
+											<form class="inline-form" id="theform" action="__CONTROLLER__/addAuctionMsg" method="post">
+												<input type="hidden" name="goods_uid" value="{$record.uid}" >
+												<div class="form-group" style="margin:0;margin-bottom:10px">
+													<label for="message" class="control-label">快速留言</label>
+													<textarea class="form-control" name="message"
+														id="message" placeholder="请输入留言内容" rows="5" required></textarea>
+												</div>
+												<div class="form-group">
+													<div align="center">
+														<input type="text" id="code" name="code" placeholder="请输入验证码" required>
+														<img class="verify"
+															title="点击换一张" src="__ROOT__/Home/Common/genverify">
+														<button type="submit" class="btn btn-info">提交留言</button>
+													</div>
+												</div>
+											</form>
+										</td>
+									</thead>
+									<empty name="messageList">
+										<tr>
+											<td>
+												<div align="center">暂无留言！</div>
+											</td>
+										</tr>
+									<else/>
+									<volist name="messageList" id="vo">
+										<tr>
+											<td style="padding-top:15px;padding-bottom:15px">
+												<div style="margin-bottom:12px">
+													{$vo.author}:
+													<if condition="$vo.author_location neq ''">													
+														<span class="graytext"><!-- [ip：{$vo.author_ip}]  -->[来自：{$vo.author_location}]</span>
+													</if>
+													<span class="pull-right graytext">
+														{$vo.post_time} 发表
+	<!-- 														&nbsp;&nbsp;<a href="__CONTROLLER__">回复</a> -->
+													</span>
+												</div>
+												<span class="message-content">
+													<php>
+														$msg = $vo["message"];
+														$msg = str_replace("<", "&lt;", $msg);
+														$msg = str_replace(">", "&gt;", $msg);
+														echo $msg;
+													</php>
+												</span>
+												<div id=""></div>
+												<form id="replyForm">
+													<input type="hidden" name="">
+												</form>
+											</td>
+										</tr>
+									</volist>
+									</empty>
+								</table>								
+							</div>
+						</div>
+                   	</div>
+                </div>
+            </div>
+		</div>
+	</div>
+	<include file="./Application/Tpl/footer.html" />
+</body>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".verify").click();
+	});
+
+	$(".verify").click(function() {
+		var newUrl = $(this).attr("src") + "?F=" + Math.random();
+		$(this).attr("src", newUrl);
+	});
+</script>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<include file="./Application/Tpl/header.html" />
+<title>东鸣轩收藏品中心</title>
+</head>
+
+<body>
+	<include file="./Application/Tpl/navi.html" active="home"/>
+	<div class="container">
+		<include file="./Application/Tpl/homeSlide.html" />
+        <div class="row">
+            <div class="col-md-3 nopaddingleft {$nopaddingright}">
+				<include file="./Application/Tpl/announcement.html" />
+				<include file="./Application/Tpl/sellers.html" />                
+                
+				<include file="./Application/Tpl/ads.html" key="homeleftads" />
+			</div>			
+            <div class="col-md-6 nopaddingleft nopaddingright">
+            	<div class="panel panel-warning">
+					<div class="panel-heading">v6竞投会
+						<span class="pull-right">
+							<a href="__ROOT__/Home/Auction/latestAuctionList.html">
+								更多>>
+							</a>
+						</span>
+					</div>
+					<div class="panel-body" style="padding-top:5px;">
+					<div class="row">
+                    	<volist name="auctionList" id="vo">							
+								<div class="col-md-6" style="padding-left:3px;padding-right:3px">
+		            				<div class="thumbnail" style="margin-bottom:5px">
+<!-- 		            					<div class="icon"> -->
+<!-- 											<span class="two">HOT！</span> -->
+<!-- 										</div> -->
+		                                <a href="__ROOT__/Home/Auction/viewAuction/uid/{$vo.uid}" >
+		                                	<img src="__ROOT__/Uploads/{$vo.photo_url}" >
+		                                </a>
+		                				<div align="center">
+<!-- 		                					<small> -->
+<!-- 		                						<span>V6竞投</span> -->
+<!-- 		                						<span class="pull-right">{$vo.start_date}</span> -->
+<!-- 		                					</small> -->
+		                    				<a href="__ROOT__/Home/Auction/viewAuction/uid/{$vo.uid}">{$vo.title}</a>		                    			
+		                				</div>
+		           				 	</div>
+		        				</div>		        			
+		        			</volist>
+		        		</div>
+                    </div>
+                </div>
+                <div class="panel panel-warning">
+					<div class="panel-heading">公司简介</div>
+					<div class="panel-body" style="padding-top: 0;">
+                    	{$richText}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 nopaddingright">
+            	<include file="./Application/Tpl/activity.html" />
+            	<include file="./Application/Tpl/contactus.html" />  
+            	<include file="./Application/Tpl/ads.html" key="homerightads" />
+            </div>
+        </div>
+        <div class="row">
+        <div class="panel panel-default">
+			<div class="panel-heading">友情链接</div>
+			<div class="panel-body" style="padding: 0" align="center">
+				<div class="row">
+			    	<div class="col-md-3">
+			    		<a href='http://www.icoin.cn' target='_blank' title='九州钱币收藏网'>
+					    	<img src='__ROOT__/Public/images/friendlylinks/jzqb.jpg' style='border:0px;width:150px' alt='九州钱币收藏网' />
+					    </a>
+					</div>
+					<div class="col-md-3">
+					    <a href='http://hmkcc.cn' target='_blank' title='好旺角收藏网'>
+					    	<img src='__ROOT__/Public/images/friendlylinks/hwj.png' style='border:0px;width:150px' alt='好旺角收藏网' />
+					    </a>
+					</div>
+					<div class="col-md-3">
+					    <a href='http://www.accacoin.com/home/home00/index.aspx' target='_blank' title='AccaCoin 亞洲錢幣鑑定中心'>
+					    	<img src='__ROOT__/Public/images/friendlylinks/ACCA-4(201x101).jpg' style='border:0px;width:150px' alt='AccaCoin 亞洲錢幣鑑定中心' />
+					    </a>
+					</div>
+					<div class="col-md-3">
+					    <a href='http://www.beijingcoin.com' target='_blank' title='北京钱币网'>
+					    	<img src='__ROOT__/Public/images/friendlylinks/beijingcoin.gif' style='border:0px;width:150px' alt='北京钱币网' />
+					    </a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+					    <a href='http://www.quancang.com/' target='_blank' title='湘泉雅集'>
+					    	<img src='__ROOT__/Public/images/friendlylinks/xiangquanyaji.jpg' style='border:0px;width:150px' alt='湘泉雅集' />
+					    </a>
+					</div>
+					<div class="col-md-3">
+					    <a href='http://www.shouxi.com/' target='_blank' title='首席收藏'>
+					    	<img src='__ROOT__/Public/images/friendlylinks/shouxi.gif' style='border:0px;width:150px' alt='首席收藏' />
+					    </a>
+					</div>					
+					<div class="col-md-3">
+					    <a href='http://zghqwx.com/' target='_blank' title='华侨历史文献档案馆'>
+					    	<img src='__ROOT__/Public/images/friendlylinks/zghqwx.jpg' style='border:0px;width:150px' alt='华侨历史文献档案馆' />
+					    </a>
+					</div>
+					<div class="col-md-3">
+					    <a href='http://www.fuchincoins.com/' target='_blank' title='福君钱币'>
+					    	<img src='__ROOT__/Public/images/friendlylinks/fuchin.jpg' style='border:0px;width:150px' alt='福君钱币' />
+					    </a>
+					</div>
+			    </div>
+			</div>
+		</div>
+		</div>    
+	</div>
+    <include file="./Application/Tpl/footer.html" />
+</body>
+</html>

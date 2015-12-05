@@ -1,0 +1,35 @@
+
+<div class="panel panel-warning">
+	<div class="panel-heading">公司公告</div>
+	<div class="panel-body" id="amouncement">
+		<marquee id="homeAnnouncement" behavior="scroll" height="120px" onmouseout="this.start()" onmouseover="this.stop()"
+			direction="up" scrollamount="3">
+			<ul>
+				<volist name="announcementList" id="vo">
+				<li class="dash-li">
+<!-- 					<a data-toggle="modal" href="#myModal" -->
+<!-- 						onclick="viewRichText({$vo.uid}, '公司公告 - {$vo.title}')">{$vo.title}</a> -->
+					<a href="javascript: viewNewDetails({$vo.uid})" style="text-decoration: none;">{$vo.title}</a>
+				</li>
+				</volist>
+			</ul>
+		</marquee>
+	</div>
+</div>
+
+
+
+
+<!-- 				<div class="divbox"> -->
+<!--                     <div class="title index-hd "><em>公司公告</em></div> -->
+<!--                     <marquee id="homeAnnouncement" behavior="scroll" height="120px" onmouseout="this.start()" onmouseover="this.stop()" direction="up" scrollamount="3"> -->
+<!--                         <ul> -->
+<!--                         	<volist name="announcementList" id="vo"> -->
+<!-- 	                            <li class="dash-li"> -->
+<!-- 	                            	<a data-toggle="modal" href="#myModal" onclick="viewRichText({$vo.uid}, '公司公告 - {$vo.title}')">{$vo.title}</a>  -->
+<!-- 	                            </li> -->
+<!--                             </volist> -->
+<!--                         </ul> -->
+<!--                     </marquee> -->
+<!--                 </div> -->
+

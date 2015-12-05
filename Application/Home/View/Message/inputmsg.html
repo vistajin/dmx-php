@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<include file="./Application/Tpl/header.html" />
+<title>东鸣轩商城 - 留言</title>
+<link rel="stylesheet" href="__PUBLIC__/validform/css/style.css" media="all">
+<script type="text/javascript" src="__PUBLIC__/validform/js/Validform_v5.3.2.js"></script>
+</head>
+<body>
+	<include file="./Application/Tpl/navi.html" active="home"/>
+	<div class="container">
+		<include file="./Application/Tpl/homeSlide.html" />
+        <div class="row">
+            <div class="col-md-3 nopaddingleft {$nopaddingright}">
+                <include file="./Application/Tpl/activity.html" />                
+                <include file="./Application/Tpl/ads.html" key="otherleftads" />
+            </div>
+            <div class="col-md-9 nopaddingleft nopaddingright">
+                <div class="panel panel-warning">
+					<div class="panel-heading">客户留言</div>
+					<div class="panel-body">
+	                   	<form class="inline-form" id="theform" action="__CONTROLLER__/savemsg.html" method="post">
+							<div class="form-group" style="margin: 10px 50px 0px 50px;"> <!-- top right bottom left -->
+								<label for="title" class="control-label">标题</label> <input type="text" class="form-control" name="title"
+									id="title" placeholder="请输入留言标题" datatype="*1-200" errormsg="你输入的用户名包含非法字符或超出200个字符！" nullmsg="请输入留言标题!"/>
+							</div>				
+							<div class="form-group" style="margin: 0px 50px 0px 50px;">
+								<label for="content" class="control-label">内容</label> <textarea type="text" class="form-control" name="content"
+									id="content" placeholder="请输入留言内容" datatype="*" nullmsg="请输入留言内容!" rows="5"></textarea>
+			
+							</div>
+							<div class="form-group" style="margin: 0px 50px 0px 50px;">
+								<label for="contact_name" class="control-label">联系人</label> <input type="text" class="form-control" name="contact_name"
+									id="contact_name" placeholder="请输入联系人" datatype="s1-50" errormsg="请输入正确的联系人！" nullmsg="请输入联系人!">
+			
+							</div>
+							<div class="form-group" style="margin: 0px 50px 0px 50px;">
+								<label for="contact_phone" class="control-label">联系电话</label> <input type="text" class="form-control" name="contact_phone"
+									id="contact_phone" placeholder="请输入您的手机号码" datatype="n11-11" errormsg="手机号码为11位数字！" nullmsg="请输入您的手机号码!">
+			
+							</div>
+							<div class="form-group" style="margin: 0px 50px 0px 50px;">
+								<label for="email" class="control-label">E-mail</label> <input type="email" class="form-control" name="email"
+									id="email" placeholder="请输入您的注册邮箱" datatype="e" errormsg="邮箱格式不正确！" nullmsg="请输入您的注册邮箱!">
+							</div>
+							<div class="form-group" style="margin: 0px 50px 0px 50px;">
+								<label for="code" class="control-label">验证码</label> <input type="text" id="code" name="code" class="form-control"
+									placeholder="请输入验证码" datatype="n4-4" errormsg="验证码为4位数字！" nullmsg="请输入验证码!">
+								<img class="verify" title="点击换一张" src="__ROOT__/Home/Common/genverify">
+							</div>
+							<div class="form-group">
+								<div align="center">
+									<button type="submit" class="btn btn-info">提交留言</button>
+								</div>
+							</div>
+						</form>
+					</div>	
+                </div>
+            </div>
+        </div>
+	</div>
+    <include file="./Application/Tpl/footer.html" />
+</body>
+<script type="text/javascript">
+	$("#theform").Validform({
+		tiptype : 3
+	/* 2: 输入框右边显示错误信息， 1： 弹出显示， 3：输入框下方显示 */
+	});
+	$(".verify").click(function() {
+		var newUrl = $(this).attr("src") + "?F=" + Math.random();
+		$(this).attr("src", newUrl);
+	});
+</script>
+</html>

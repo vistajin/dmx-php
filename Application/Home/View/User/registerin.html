@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<include file="./Application/Tpl/header.html" />
+<title>东鸣轩商城 - 注册</title>
+<link rel="stylesheet" href="__PUBLIC__/validform/css/style.css" media="all">
+<script type="text/javascript" src="__PUBLIC__/validform/js/Validform_v5.3.2.js"></script>
+</head>
+
+<body>
+	<include file="./Application/Tpl/navi.html" />
+	<div class="container">
+		<include file="./Application/Tpl/homeSlide.html" />
+		<div class="container" style="width: 465px">
+			<div class="row">
+				<div class="col-sm-offset-3 col-sm-8">
+					<div class="page-header" align="center">
+						<h3>注册新用户</h3>
+					</div>
+				</div>
+			</div>
+			<form class="form-horizontal" id="theform" action="__CONTROLLER__/register" method="post">
+				<div class="form-group">
+					<label for="user_id" class="col-sm-3 control-label">用户名</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" name="user_id" id="user_id" placeholder="请设定您的登录用户名" datatype="s1-50"
+							errormsg="你输入的用户名包含非法字符或超出50个字符！" nullmsg="请设定您的登录用户名!" ajaxurl="__CONTROLLER__/checkExist/field/user_id" />
+					</div>
+					<div class="col-sm-1 Validform_div"></div>
+				</div>
+				<div class="form-group">
+					<label for="password" class="col-sm-3 control-label">密码</label>
+					<div class="col-sm-8">
+						<input type="password" class="form-control" name="password" id="password" placeholder="请设定您的登录密码" datatype="s6-16"
+							errormsg="密码最少6个字符，最多16个字符！" nullmsg="请设定您的登录密码!">
+					</div>
+					<div class="col-sm-1 Validform_div"></div>
+				</div>
+				<div class="form-group">
+					<label for="password2" class="col-sm-3 control-label">确认密码</label>
+					<div class="col-sm-8">
+						<input type="password" class="form-control" name="password2" id="password2" placeholder="请再次输入密码" datatype="s6-16"
+							errormsg="您两次输入的密码不一致！" nullmsg="请再次输入密码!" recheck="password">
+					</div>
+					<div class="col-sm-1 Validform_div"></div>
+				</div>
+				<div class="form-group">
+					<label for="email" class="col-sm-3 control-label">E-mail</label>
+					<div class="col-sm-8">
+						<input type="email" class="form-control" name="email" id="email" placeholder="请输入您的注册邮箱" datatype="e"
+							errormsg="邮箱格式不正确！" nullmsg="请输入您的注册邮箱!" ajaxurl="__CONTROLLER__/checkExist/field/email">
+					</div>
+					<div class="col-sm-1 Validform_div"></div>
+				</div>
+				<div class="form-group">
+					<label for="mobile" class="col-sm-3 control-label">手机</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" name="mobile" id="mobile" placeholder="请输入您的手机号码" datatype="n11-11"
+							errormsg="手机号码为11位数字！" nullmsg="请输入您的手机号码!" ajaxurl="__CONTROLLER__/checkExist/field/mobile">
+					</div>
+					<div class="col-sm-1 Validform_div"></div>
+				</div>
+				<div class="form-group">
+					<label for="code" class="col-sm-3 control-label">验证码</label>
+					<div class="col-sm-8">
+						<input type="text" id="code" name="code" class="form-control" placeholder="请输入验证码" datatype="n4-4"
+							errormsg="验证码为4位数字！" nullmsg="请输入验证码!"> <img class="verify"
+							title="点击换一张" src="__ROOT__/Home/Common/genverify"> <!-- TODO:  ajaxurl="__CONTROLLER__/checkCode" -->
+					</div>
+					<div class="col-sm-1 Validform_div"></div>
+				</div>
+				<!-- 				<div class="form-group"> -->
+				<!-- 					<div class="col-sm-offset-2 col-sm-10"> -->
+				<!-- 						<div class="checkbox"> -->
+				<!-- 							<label><input type="checkbox"> Remember me</label> -->
+				<!-- 						</div> -->
+				<!-- 					</div> -->
+				<!-- 				</div> -->
+				<div class="form-group">
+					<div class="col-sm-offset-3 col-sm-8" align="center">
+						<button type="submit" class="btn btn-info">确定注册</button>
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+	<include file="./Application/Tpl/footer.html" />
+</body>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".verify").click();
+	});
+	$("#theform").Validform({
+		tiptype : 2
+	/* 2: 输入框右边显示错误信息， 1： 弹出显示， 3：输入框下方显示 */
+	});
+	$(".verify").click(function() {
+		var newUrl = $(this).attr("src") + "?F=" + Math.random();
+		$(this).attr("src", newUrl);
+	});
+</script>
+</html>

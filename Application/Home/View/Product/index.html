@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<include file="./Application/Tpl/header.html" />
+<link rel="stylesheet" href="__PUBLIC__/treeview/bootstrap-treeview.css">
+<script src="__PUBLIC__/treeview/bootstrap-treeview.js"></script>
+<title>东鸣轩收藏品中心</title>
+</head>
+
+<body>
+	<include file="./Application/Tpl/navi.html" active="home" />
+	<div class="container">
+		<include file="./Application/Tpl/homeSlide.html" />
+		<div class="row">
+			<div class="col-md-3 nopaddingleft">
+				<div class="divbox">
+					<div class="title index-hd ">
+						<em>产品列表</em>
+					</div>
+					<div id="tree"></div>
+				</div>
+
+				<div class="divbox">
+					<div class="title index-hd ">
+						<em>联系我们</em>
+					</div>
+					<ul>
+						<li class="dash-li">电话：13632326263</li>
+						<li class="dash-li">传真：13632326263</li>
+						<li class="dash-li">邮箱：528189@qq.com</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-9 nopaddingleft nopaddingright">
+				<div class="divbox">
+					<div class="title index-hd ">
+						<em>当前位置 > 产品展示</em>
+					</div>
+					<div class="row grouppic">
+					<volist name="productList" id="vo">
+					
+    					<div class="story">
+            				<div class="thumbnail" style="margin-bottom: 5px;">
+                                <a href="__CONTROLLER__/details/uid/{$vo.uid}" >
+                                	<img src="{$vo.img_url}" />
+                                </a>
+                				<div class="caption">
+	                    			<h4><a href="__CONTROLLER__/details/uid/{$vo.uid}" title='{$vo.text}'>{$vo.text}</a></h4>
+                				</div>
+           				 	</div>
+        				</div>
+        			</volist>
+        			</div>					
+				</div>
+			</div>
+		</div>
+	</div>
+	<include file="./Application/Tpl/footer.html" />
+</body>
+<script>
+	$('#tree').treeview({
+		data : {$tree}
+	});
+	$('#tree').on('nodeSelected', function(event, data) {
+		//alert(data.nodes);
+		alert("Coming soon...");
+	});
+</script>
+</html>

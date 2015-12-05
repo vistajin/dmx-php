@@ -1,0 +1,73 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container" style="background-color: #EDCB83">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<!-- button是为了适应小屏幕可以弹出菜单 -->
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<img class="navbar-brand" style="padding:0" src="__PUBLIC__/images/band.jpg">
+			<a class="navbar-brand" style="padding-left:30px" href="__ROOT__/Home/Index/index.html">东鸣轩</a>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-navbar-collapse">
+			<ul class="nav navbar-nav">
+				<volist name="firstLevelMenus" id="vo">
+					<empty name="vo['second_level_menus']"> <!-- str_replace(find,replace,string,count) -->
+						<if condition="$vo.controller eq '/'.$Think.MODULE_NAME.'/'.$Think.CONTROLLER_NAME">
+						<li class="active"><a href="#">{$vo.text}</a></li>
+						<else/>
+						<li><a href="__ROOT__{$vo.controller}{$vo.action}">{$vo.text}</a></li>
+						</if>
+					<else/>
+						<if condition="$vo.controller eq '/'.$Think.MODULE_NAME.'/'.$Think.CONTROLLER_NAME">
+						<li class="active"><a href="#">{$vo.text}</a></li>
+						<else/>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+								aria-expanded="false">{$vo.text}<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu" role="menu">
+								<volist name="vo['second_level_menus']" id="vo2">									
+									<li>
+										<a href="__ROOT__{$vo.controller}{$vo2.action}">
+											{$vo2.text}
+										</a>
+									</li>
+								</volist>
+							</ul>
+						</li>
+						</if>
+					</empty>
+				</volist>
+			</ul>
+			<ul class="nav navbar-nav pull-right">
+<!-- 		        <li><span class="navbar-text">{$data.time|default=time()|date='Y年m月d日',###}</span></li> -->
+		        <empty name="Think.session.user">
+		        		<li><a href="__ROOT__/forum" class="hrefs">论坛</a></li>
+<!-- 		        	<li><a href="__ROOT__/Home/User/login" class="hrefs">登录</a></li> -->
+<!-- 					<li><a href="__ROOT__/Home/User/registerin" class="hrefs">注册</a></li> -->
+				<else />
+					<li><a href="__ROOT__/Home/User/userinfo" class="hrefs"><span class="glyphicon glyphicon-user"> {$Think.session.user}</span></a></li>
+					<li><a href="__ROOT__/Home/User/logout" class="hrefs">退出</a></li>		
+				</empty>
+		   </ul>
+		</div>
+	</div>
+</nav>
+
+<script>
+	// 当鼠标移到下拉菜单的时候，让下拉菜单自动弹出而不需点击鼠标
+	$('li.dropdown').mouseover(function() {
+		$(this).addClass('open');
+	}).mouseout(function() {
+		$(this).removeClass('open');
+	});
+	$('li:not(.active)').mouseover(function() {
+		$(this).addClass('active');
+	}).mouseout(function() {
+		$(this).removeClass('active');
+	});
+</script>

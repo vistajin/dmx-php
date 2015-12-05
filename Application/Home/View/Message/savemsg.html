@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<include file="./Application/Tpl/header.html" />
+<title>东鸣轩商城 - 留言</title>
+</head>
+<?php $waitSecond = 5; ?>
+<body>
+	<include file="./Application/Tpl/navi.html" />
+	<div class="container">
+		<include file="./Application/Tpl/homeSlide.html" />
+		<div class="page-header" align="center">
+			<h3>您的留言已提交，我们会尽快处理！</h3>
+			<br/><br/>
+			<p class="jump">
+				正在跳转到 <a id="href" href="__ROOT__/Home/Index">首页</a> 等待时间： <b id="wait"> <?php echo($waitSecond); ?>
+				</b>
+			</p>
+		</div>
+	</div>
+	<include file="./Application/Tpl/footer.html" />
+</body>
+<script type="text/javascript">
+	(function() {
+		var wait = document.getElementById("wait"), href = document
+				.getElementById("href").href;
+		var interval = setInterval(function() {
+			var time = --wait.innerHTML;
+			if (time <= 0) {
+				location.href = href;
+				clearInterval(interval);
+			}
+			;
+		}, 1000);
+	})();
+</script>
+</html>

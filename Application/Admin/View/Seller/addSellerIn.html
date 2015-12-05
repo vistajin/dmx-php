@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<include file="./Application/Tpl/header-admin.html" />
+<meta name="description" content="东鸣轩" />
+<meta name="author" content="Vista JIN" />
+<meta name="keywords" CONTENT="东鸣轩" />
+<title>东鸣轩商城</title>
+<link href="__PUBLIC__/fileinput-master/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+<script src="__PUBLIC__/fileinput-master/js/fileinput.js"></script>
+<script charset="utf-8" src="__PUBLIC__/kindeditor/kindeditor.js"></script>
+<script charset="utf-8" src="__PUBLIC__/kindeditor/lang/zh_CN.js"></script>
+<!-- <link href="__PUBLIC__/multiple-select/multiple-select.css" rel="stylesheet" /> -->
+<!-- <script charset="utf-8" src="__PUBLIC__/multiple-select/jquery.multiple.select.js"></script> -->
+<script>
+	KindEditor.ready(function(K) {
+		window.editor = K.create('#editor_id');
+	});
+</script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="page-header nomargin">
+			<h3>添加商家</h3>
+		</div>
+		<form enctype="multipart/form-data" action="__ROOT__/Admin/Seller/addSeller" method="post">
+			<div class="form-group">
+				<label for="name">商家名称</label> <input type="text" class="form-control" name="name" id="name"
+					placeholder="请输入商家名称">
+			</div>
+			<div class="form-group">
+				<label for="name">序号</label> <input type="text" class="form-control" name="oseq" id="oseq"
+					style="width:150px" placeholder="请输入商家排列序号">
+			</div>
+			<div class="form-group">
+				<label for="floor">楼层</label>
+				<select class="form-control" required style="width:300px" name="floor" id="floor">
+					<option value="">请选择</option>
+					<volist name="floors" id="vo">
+					<option value="{$key}">{$vo}</option>
+					</volist>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="major_business">经营业务</label>
+				<select multiple="true" class="form-control" required style="width:300px" name="major_business[]" id="major_business">
+<!-- 					<option value="">请选择</option> -->
+					<volist name="businessTypeList" id="vo">
+					<option value="{$key}">{$vo}</option>
+					</volist>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="deal_in">经营特色</label>
+				<input type="text" class="form-control" name="deal_in" id="deal_in"
+					placeholder="请输入商家经营特色">
+			</div>
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="second_business">次营业务</label> -->
+<!-- 				<select class="form-control" required style="width:300px" name="second_business" id="second_business"> -->
+<!-- 					<option value="">请选择</option> -->
+<!-- 					<volist name="businessTypeList" id="vo"> -->
+<!-- 					<option value="{$key}">{$vo}</option> -->
+<!-- 					</volist> -->
+<!-- 				</select> -->
+<!-- 			</div> -->
+			<div class="form-group">
+				<label for="photo">商家LOGO (jpg, png, gif, jpeg)</label> <input name="photo" id="photo" class="file form-control"
+					type="file" multiple data-min-file-count="0">
+			</div>
+			<div class="form-group">
+				<label for="address">商家地址</label> <input type="text" class="form-control" name="address" id="address"
+					placeholder="请输入商家地址">
+			</div>
+			<div class="form-group">
+				<label for="contact_person">联系人</label> <input type="text" class="form-control" name="contact_person" id="contact_person"
+					placeholder="请输入商家联系人" style="width:200px">
+			</div>
+			<div class="form-group">
+				<label for="contact_phone">联系电话</label> <input type="text" class="form-control" name="contact_phone" id="contact_phone"
+					placeholder="请输入商家联系电话" style="width:200px">
+			</div>
+			<div class="form-group">
+				<label for="email">电子邮箱</label> <input type="text" class="form-control" name="email" id="email"
+					placeholder="请输入商家电子邮箱" style="width:200px">
+			</div>
+			<div class="form-group">
+				<label for="postcode">邮政编码</label> <input type="text" class="form-control" name="postcode" id="postcode"
+					placeholder="请输入商家邮政编码" style="width:200px">
+			</div>
+			<div class="form-group">
+				<label for="introduction">商家简介</label>
+				<textarea id="editor_id" name="introduction" style="width: 100%; height: 400px;"></textarea>
+			</div>
+			<div align="center">
+				<button type="submit" class="btn btn-info">确定</button>
+			</div>
+		</form>
+		<br/><br/>
+	</div>
+</body>
+<script>
+//$("#major_business").multipleSelect();
+$("#photo").fileinput({
+    'allowedFileExtensions' : ['jpg', 'png','gif', 'jpeg'],
+});
+</script>
+</html>

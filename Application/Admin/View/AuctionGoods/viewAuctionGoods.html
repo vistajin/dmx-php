@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<include file="./Application/Tpl/header-admin.html" />
+<meta name="description" content="东鸣轩" />
+<meta name="author" content="Vista JIN" />
+<meta name="keywords" CONTENT="东鸣轩" />
+<title>东鸣轩商城</title>
+</head>
+
+<body>
+	<div class="container">
+		<div class="page-header nomargin" align="center">
+			<h3>物品详情</h3>
+		</div>
+		<form class="form-horizontal">
+			<div>
+				<label class="col-sm-3 control-label">物品名称</label>
+				<div class="col-sm-9">
+					<p class="form-control-static">{$record.name}</p>
+				</div>
+			</div>
+			<div>
+				<label class="col-sm-3 control-label">物品状态</label>
+				<div class="col-sm-9">
+					<p class="form-control-static">{$goodsStatusList[$record[status]]}</p>
+				</div>
+			</div>
+<!-- 			<div> -->
+<!-- 				<label class="col-sm-3 control-label">已拍卖？</label> -->
+<!-- 				<div class="col-sm-9"> -->
+<!-- 					<p class="form-control-static"> -->
+<!-- 						<if condition="$record['sold'] eq 1"> -->
+<!-- 						<span class="glyphicon glyphicon-ok"></span> -->
+<!-- 						<else/> -->
+<!-- 						</if> -->
+<!-- 					</p> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+			<div>
+				<label class="col-sm-3 control-label">物品类别</label>
+				<div class="col-sm-9">
+					<p class="form-control-static">{$productCategoryList[$record[category]]}</p>
+				</div>
+			</div>
+			<div>
+				<label class="col-sm-3 control-label">价格</label>
+				<div class="col-sm-9">
+					<p class="form-control-static">{$record.price}</p>
+				</div>
+			</div>
+<!-- 			<div> -->
+<!-- 				<label class="col-sm-3 control-label">起拍价</label> -->
+<!-- 				<div class="col-sm-9"> -->
+<!-- 					<p class="form-control-static">{$record.begin_price}</p> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 			<div> -->
+<!-- 				<label class="col-sm-3 control-label">最终价</label> -->
+<!-- 				<div class="col-sm-9"> -->
+<!-- 					<p class="form-control-static">{$record.end_price}</p> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+			<div>
+				<label class="col-sm-3 control-label">获得者</label>
+				<div class="col-sm-9">
+					<p class="form-control-static">{$record.winner}</p>
+				</div>
+			</div>
+<!-- 			<div> -->
+<!-- 				<label class="col-sm-3 control-label">起拍时间</label> -->
+<!-- 				<div class="col-sm-9"> -->
+<!-- 					<p class="form-control-static">{$record.begin_time}</p> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 			<div> -->
+<!-- 				<label class="col-sm-3 control-label">结束时间</label> -->
+<!-- 				<div class="col-sm-9"> -->
+<!-- 					<p class="form-control-static">{$record.end_time}</p> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+			<div>
+				<label class="col-sm-3 control-label">物品缩略图</label>
+				<div class="col-sm-9">
+					<p class="form-control-static"><img src="__ROOT__/Uploads/{$record.photo_url}"></p>
+				</div>
+			</div>
+			<div>
+				<label class="col-sm-3 control-label">物品详情</label>
+				<div class="col-sm-9">
+					{$record.description}
+				</div>
+			</div>
+			<div align="center" class="col-sm-12">
+				<button type="button" class="btn btn-default" onclick="history.go(-1)">返回</button>
+			</div>
+		</form>
+		<br/><br/>
+	</div>
+
+</body>
+</html>

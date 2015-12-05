@@ -1,0 +1,119 @@
+<include file="./Application/Tpl/header-admin.html" />
+
+<body>
+	<div class="container" align="center" style="margin: 20px;">
+		<button class="btn btn-info" id="addbutton">
+			<span class="glyphicon glyphicon-plus"></span>添加{$categoryText}
+		</button>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th style="text-align: center;">序号</th>
+					<th style="text-align: center;">显示</th>
+					<th>广告商家</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<volist name="rtlist" id="vo">
+			<tr>
+				<td align="center" width="50px">{$key+1}</td>
+				<td align="center" width="50px">
+					<if condition="$vo['isshow'] eq 1">
+					<span class="glyphicon glyphicon-ok"></span>
+					<else/>
+					&nbsp;
+					</if>
+				</td>
+				<td>{$vo.name}</td>
+				<td width="250px">
+					<button class="btn btn-info" onclick="editAdsInput({$vo.uid})" title="编辑">
+						<span class="glyphicon glyphicon-pencil"></span>
+					</button>
+					<button class="btn btn-danger" data-toggle="modal" data-target="#myModal" 
+						onclick="deleteAds({$vo.uid})" title="删除">
+						<span class="glyphicon glyphicon-remove"></span>
+					</button>
+					<!-- 只有显示的才有上下排序按钮 -->
+					<if condition="$vo['isshow']">
+						<button class="btn btn-success" onclick="upAds({$vo.uid})" title="上移">
+							<span class="glyphicon glyphicon-arrow-up"></span>
+						</button>
+						<button class="btn btn-success" onclick="downAds({$vo.uid})" title="下移">
+							<span class="glyphicon glyphicon-arrow-down"></span>
+						</button>
+					</if>
+					
+				</td>
+			</tr>
+			</volist>
+		</table>
+		<div class="container" align="center" style="margin-top: 0; margin-bottom:20px;">
+			<ul class="pagination nomargin">{$page}
+			</ul>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">警告</h4>
+				</div>
+				<div class="modal-body">确定要删除该{$categoryText}吗？</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="button" class="btn btn-danger" onclick="doDeleteAds()">确定删除</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<form id="theform" method="post">
+		<input type="hidden" id="uid" name="uid">
+		<input type="hidden" id="category" name="category" value="{$category}">
+	</form>
+</body>
+<script>
+function submitForm(url) {
+    $("#theform").attr("action", url);
+    $("#theform").submit();
+}
+
+$("#addbutton").click(function() {
+    submitForm("__CONTROLLER__/createAdsInput/category/{$category}");
+});
+
+function editAdsInput(uid) {
+    $("#uid").val(uid);
+    submitForm("__CONTROLLER__/editAdsInput/category/{$category}");
+}
+
+function copyAds(uid) {
+    $("#uid").val(uid);
+    submitForm("__CONTROLLER__/copyAds/category/{$category}");
+}
+
+function upAds(uid) {
+    $("#uid").val(uid);
+    submitForm("__CONTROLLER__/upAds/category/{$category}");
+}
+function downAds(uid) {
+    $("#uid").val(uid);
+    submitForm("__CONTROLLER__/downAds/category/{$category}");
+}
+
+function deleteAds(uid) {
+    $("#uid").val(uid);
+}
+
+function doDeleteAds() {
+    submitForm("__CONTROLLER__/deleteAds")
+}
+</script>
+</html>
